@@ -1,0 +1,52 @@
+<div class="card shadow">
+  <div class="card-body">
+    <div class="col-md-12">
+
+        <h1>Lista de personas deshabilitados</h1>
+<table id="dataTable" class="table table-bordered table-responsive" width="100%" cellspacing="0">
+  <thead>
+    <tr>
+        <th scope="col">N°</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Documento</th>
+        <th scope="col">Creado</th>
+        <th scope="col">Modificado</th>
+        <th scope="col">Nombre Materia</th>
+        <th scope="col">Habilitar</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $indice=1;
+    foreach ($plantilla->result() as $row)
+    {
+        ?>
+
+        <th scope="row"><?php echo $row->idPlantilla; ?></th>
+                <td><?php echo $row->nombre; ?></td>
+                <td><?php echo $row->documento; ?></td>
+                <td><?php echo $row->fechaReg; ?></td>
+                <td><?php echo $row->fechaAct; ?></td>
+                <td><?php echo $row->nombreMateria; ?></td>
+                <td>                
+                  <?php echo form_open_multipart('plantilla/habilitarbd'); ?>
+                  <input type="hidden" name="idPlantilla" value="<?php echo $row->idPlantilla; ?>">
+                  <button type="submit" class="btn btn-success" text-align="text-center"><i class="fas fa-check"></i></button>
+                  <?php echo form_close(); ?>
+                </td>
+        <?php
+        $indice++;
+        
+    }
+    ?>
+
+  </tbody>
+</table>
+        <?php echo form_open_multipart('plantilla/index'); ?>
+        <button type="submit" class="btn btn-primary" >Ver Plantillas Habilitadas</button>
+        <?php echo form_close(); ?>
+        <br>
+        </div>
+    </div>
+</div>
