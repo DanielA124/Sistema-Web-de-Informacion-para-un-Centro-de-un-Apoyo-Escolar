@@ -28,15 +28,6 @@ class Profesor_model extends CI_Model {
         }
     }
 
-    public function listaprofesoresdeshabilitados()
-    {
-        $this->db->select('persona.idPersona, persona.nombres, persona.apellidoPaterno, persona.apellidoMaterno, persona.direccion, horario, numeroCel'); //select *
-        $this->db->from('profesor'); //tabla
-        $this->db->join('persona', 'profesor.idProfesor=persona.idPersona');
-        $this->db->where('persona.estado','0');
-        return $this->db->get(); //devolucion del resultado de la consulta
-    }
-
     public function recuperarprofesor($idProfesor)
     {
         $this->db->select('persona.idPersona, persona.nombres, persona.apellidoPaterno, persona.apellidoMaterno, persona.direccion, horario, numeroCel'); //select *
@@ -78,5 +69,13 @@ class Profesor_model extends CI_Model {
         }
     }
 
+    public function listaprofesoresdeshabilitados()
+    {
+        $this->db->select('persona.idPersona, persona.nombres, persona.apellidoPaterno, persona.apellidoMaterno, persona.direccion, horario, numeroCel'); //select *
+        $this->db->from('profesor'); //tabla
+        $this->db->join('persona', 'profesor.idProfesor=persona.idPersona');
+        $this->db->where('persona.estado','0');
+        return $this->db->get(); //devolucion del resultado de la consulta
+    }
 
 }

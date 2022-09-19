@@ -30,6 +30,9 @@
                         <?php echo form_open_multipart('profesor/index'); ?>
                             <button type="submit" class="btn btn-light btn-block btn-sm">Profesores</button>
                         <?php echo form_close(); ?>
+                        <?php echo form_open_multipart('apoderado/index'); ?>
+                            <button type="submit" class="btn btn-light btn-block btn-sm">Padres</button>
+                        <?php echo form_close(); ?>
                     </div>
                 </div>
             </li>
