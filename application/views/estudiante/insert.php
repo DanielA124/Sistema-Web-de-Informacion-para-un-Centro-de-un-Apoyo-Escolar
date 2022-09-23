@@ -3,7 +3,7 @@
         <div class="col-md-12">
 
         <?php 
-        echo form_open_multipart('apoderado/agregarbd');
+        echo form_open_multipart('estudiante/agregarbd');
         ?>
         <div class="row">
             <div class="col-md-3">
@@ -42,33 +42,49 @@
                 <label>Edad:</label>
             </div>
             <div class="col-md-9">
-                <input type="number" id="tentacles" min="20" max="80" name="edad" placeholder="" class="form-control" required><br>     
+                <input type="number" id="tentacles" value="5" min="5" max="14" name="edad" class="form-control" required><br>     
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
-                <label>Núm. Referencia:</label>
-            </div>
-            <div class="col-md-9">
-                <input type="text" name="numReferencia" placeholder="" class="form-control" required><br>     
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <label>Estado Civil:</label>
+                <label>Sexo:</label>
             </div>
         <div class="col-md-9">
-            <select class="form-select form-control" aria-label="Default select example" required name="estadoCivil" >
-                <option>Soltero/a</option>
-                <option>Casado/a</option>
-                <option>Divorciado/a</option>
-                <option>Viudo/a</option>
-            </select><br>     
+            <select class="form-select form-control" aria-label="Default select example" required name="sexo">
+                <option>H</option>
+                <option>M</option>
+            </select><br>    
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label>Fecha Nacimiento:</label>
+            </div>
+            <div class="col-md-9">
+                <input type="date" name="fechaNacimiento" value="2009-01-01"
+                 min="2009-01-01" max="2017-12-31" class="date-picker form-control" required><br>   
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label>Colegio:</label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" name="colegio" placeholder="" class="form-control" required><br>     
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label>Grado:</label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" name="grado" placeholder="" class="form-control" required><br>     
             </div>
         </div>
         
+        
         <br>
-        <button type="submit" class="btn btn-primary"><i class="fas fa-plus-circle"> </i> Agregar Datos Apoderado</button>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-plus-circle"> </i> Agregar Datos Estudiante</button>
        
         <?php 
         echo form_close();
