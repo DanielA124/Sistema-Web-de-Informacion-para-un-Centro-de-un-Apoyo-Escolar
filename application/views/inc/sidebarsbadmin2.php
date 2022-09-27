@@ -18,7 +18,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-male"></i>
+                    <i class="fas fa-fw fa-user"></i>
                     <span>Personas</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -36,8 +36,23 @@
                         <?php echo form_open_multipart('estudiante/index'); ?>
                             <button type="submit" class="btn btn-light btn-block btn-sm">Estudiante</button>
                         <?php echo form_close(); ?>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Inscripción</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Ver:</h6>
                         <?php echo form_open_multipart('inscripcion/index'); ?>
-                            <button type="submit" class="btn btn-light btn-block btn-sm">Inscripcion</button>
+                            <button type="submit" class="btn btn-light btn-block btn-sm">Inscritos</button>
                         <?php echo form_close(); ?>
                     </div>
                 </div>
@@ -47,7 +62,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-file"></i>
+                    <i class="fas fa-fw fa-file-word"></i>
                     <span>Archivos</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
