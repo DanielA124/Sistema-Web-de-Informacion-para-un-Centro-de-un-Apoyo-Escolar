@@ -36,6 +36,9 @@
                         <?php echo form_open_multipart('estudiante/index'); ?>
                             <button type="submit" class="btn btn-light btn-block btn-sm">Estudiante</button>
                         <?php echo form_close(); ?>
+                        <?php echo form_open_multipart('inscripcion/index'); ?>
+                            <button type="submit" class="btn btn-light btn-block btn-sm">Inscripcion</button>
+                        <?php echo form_close(); ?>
                     </div>
                 </div>
             </li>
