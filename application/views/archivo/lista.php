@@ -23,7 +23,23 @@
             <tr>
                 <th scope="row"><?php echo $row->idPlantilla; ?></th>
                 <td><?php echo $row->nombre; ?></td>
-                <td><?php echo $row->documento; ?></td>
+                <td align="center">
+                    <?php 
+                    $documento=$row->documento;
+                    if ($documento=="")
+                    {
+                      ?>
+                      <a href="<?php echo base_url(); ?>files/Empty.docx" class="btn btn-link"><img src="<?php echo base_url(); ?>/img/Word.png" width="25" height="25"></a>
+                      <?php
+                    }
+                    else
+                    {//mostramos foto o insertamos cuando no esta vacio
+                      ?>
+                      <a href="<?php echo base_url(); ?>files/<?php echo $documento; ?>" class="btn btn-link"><img src="<?php echo base_url(); ?>/img/Word.png" width="25" height="25"></a>
+                      <?php
+                    } 
+                    ?>
+                </td>
                 <td><?php echo $row->fechaReg; ?></td>
                 <td><?php echo $row->fechaAct; ?></td>
                 <td><?php echo $row->nombreMateria; ?></td>

@@ -15,14 +15,6 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <label>Documento:</label>
-            </div>
-            <div class="col-md-9">
-                <input type="text" name="documento" placeholder="" class="form-control" required><br>    
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
                 <label>Materia:</label>
             </div>
             <div class="col-md-9">

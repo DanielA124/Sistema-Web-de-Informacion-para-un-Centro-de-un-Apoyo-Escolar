@@ -20,14 +20,6 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <label>Documento:</label>
-            </div>
-            <div class="col-md-9">
-                <input type="text" name="documento" placeholder="Ingrese Documento" required value="<?php echo $row->documento; ?>" class="form-control"><br>     
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
                 <label>Materia:</label>
             </div>
             <div class="col-md-9">
@@ -44,7 +36,15 @@
                 </select><br>     
             </div>
         </div>
-        
+        <div class="row">
+            <div class="col-md-3">
+                <label>Documento:</label>
+            </div>
+            <div class="col-md-9">
+                <input type="file" name="userfile" required value="<?php echo $row->documento; ?>" class="form-control-file"><br>     
+            </div>
+        </div>
+
         <button type="submit" class="btn btn-success">Modificar Datos</button>
         <?php 
         echo form_close();
