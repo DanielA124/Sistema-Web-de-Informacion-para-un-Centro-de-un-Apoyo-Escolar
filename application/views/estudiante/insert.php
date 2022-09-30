@@ -58,15 +58,6 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <label>Fecha Nacimiento:</label>
-            </div>
-            <div class="col-md-9">
-                <input type="date" name="fechaNacimiento" value="2009-01-01"
-                 min="2009-01-01" max="2017-12-31" class="date-picker form-control" required><br>   
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
                 <label>Colegio:</label>
             </div>
             <div class="col-md-9">

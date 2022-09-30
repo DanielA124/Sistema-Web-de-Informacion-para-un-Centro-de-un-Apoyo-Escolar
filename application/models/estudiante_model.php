@@ -6,7 +6,7 @@ class Estudiante_model extends CI_Model {
 
 	public function listaestudiantes()
 	{
-        $this->db->select('persona.idPersona, persona.nombres, persona.apellidoPaterno, persona.apellidoMaterno, persona.direccion, edad, sexo, fechaNacimiento, colegio, grado'); //select *
+        $this->db->select('persona.idPersona, persona.nombres, persona.apellidoPaterno, persona.apellidoMaterno, persona.direccion, edad, sexo, colegio, grado'); //select *
         $this->db->from('estudiante'); //tabla
         $this->db->join('persona', 'estudiante.idEstudiante=persona.idPersona');
         $this->db->where('persona.estado','1');
@@ -30,7 +30,7 @@ class Estudiante_model extends CI_Model {
 
     public function recuperarestudiante($idEstudiante)
     {
-        $this->db->select('persona.idPersona, persona.nombres, persona.apellidoPaterno, persona.apellidoMaterno, persona.direccion, edad, sexo, fechaNacimiento, colegio, grado'); //select *
+        $this->db->select('persona.idPersona, persona.nombres, persona.apellidoPaterno, persona.apellidoMaterno, persona.direccion, edad, sexo, colegio, grado'); //select *
         $this->db->from('estudiante'); //tabla
         $this->db->join('persona', 'estudiante.idEstudiante=persona.idPersona');
         $this->db->where('estudiante.idEstudiante', $idEstudiante);
@@ -71,7 +71,7 @@ class Estudiante_model extends CI_Model {
 
     public function listaestudiantesdeshabilitados()
     {
-        $this->db->select('persona.idPersona, persona.nombres, persona.apellidoPaterno, persona.apellidoMaterno, persona.direccion, edad, sexo, fechaNacimiento, colegio, grado'); //select *
+        $this->db->select('persona.idPersona, persona.nombres, persona.apellidoPaterno, persona.apellidoMaterno, persona.direccion, edad, sexo, colegio, grado'); //select *
         $this->db->from('estudiante'); //tabla
         $this->db->join('persona', 'estudiante.idEstudiante=persona.idPersona');
         $this->db->where('persona.estado','0');

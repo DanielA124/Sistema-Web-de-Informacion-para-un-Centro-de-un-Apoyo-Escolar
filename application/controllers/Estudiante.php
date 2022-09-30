@@ -47,7 +47,6 @@ class Estudiante extends CI_Controller {
         $datos['idEstudiante']=$idPersona;
         $datos['edad']=$_POST['edad'];
         $datos['sexo']=$_POST['sexo'];
-        $datos['fechaNacimiento']=$_POST['fechaNacimiento'];
         $datos['colegio']=mb_strtoupper($_POST['colegio'], 'UTF-8');
         $datos['grado']=mb_strtoupper($_POST['grado'], 'UTF-8');
         
@@ -79,7 +78,6 @@ class Estudiante extends CI_Controller {
 
         $datos['edad']=$_POST['edad'];
         $datos['sexo']=$_POST['sexo'];
-        $datos['fechaNacimiento']=$_POST['fechaNacimiento'];
         $datos['colegio']=mb_strtoupper($_POST['colegio'], 'UTF-8');
         $datos['grado']=mb_strtoupper($_POST['grado'], 'UTF-8');
         $this->estudiante_model->modificarEstudiante($idEstudiante,$datos);

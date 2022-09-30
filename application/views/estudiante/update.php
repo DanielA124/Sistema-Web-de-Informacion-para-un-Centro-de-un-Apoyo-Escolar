@@ -63,14 +63,6 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <label>Fecha Nacimiento:</label>
-            </div>
-            <div class="col-md-9">
-                <input type="date" name="fechaNacimiento" placeholder="" class="form-date form-control" required value="<?php echo $row->fechaNacimiento; ?>"><br>     
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
                 <label>Colegio:</label>
             </div>
             <div class="col-md-9">

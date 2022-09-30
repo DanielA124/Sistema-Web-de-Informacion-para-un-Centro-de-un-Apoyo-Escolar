@@ -73,9 +73,12 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Plantillas:</h6>
+                        <h6 class="collapse-header">Ver:</h6>
                         <?php echo form_open_multipart('plantilla/index'); ?>
-                            <button type="submit" class="btn btn-light btn-block btn-sm">Enciclopedias</button>
+                            <button type="submit" class="btn btn-light btn-block btn-sm">Datos</button>
+                        <?php echo form_close(); ?>
+                        <?php echo form_open_multipart('archivo/index'); ?>
+                            <button type="submit" class="btn btn-light btn-block btn-sm">Documentos</button>
                         <?php echo form_close(); ?>
                     </div>
                 </div>
