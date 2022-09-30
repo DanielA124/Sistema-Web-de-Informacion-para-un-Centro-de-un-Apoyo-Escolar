@@ -9,7 +9,10 @@ class Archivo_model extends CI_Model {
         $this->db->select('idArchivo, plantilla.nombre nombre, tipo, archivos.idPlantilla idPlantilla'); //select *
         $this->db->from('archivos'); //tabla
         $this->db->join('plantilla', 'archivos.idPlantilla = plantilla.idPlantilla');
+        $this->db->where('archivos.estado','1');
         $this->db->where('plantilla.estado','1');
+        
+        
         return $this->db->get(); //devolucion del resultado de la consulta
 	}    
 
@@ -34,10 +37,10 @@ class Archivo_model extends CI_Model {
 
     public function listadatosdeshabilitados()
     {
-        $this->db->select('idArchivo, plantilla.nombre,tipo, archivo.idPlantilla'); //select *
+        $this->db->select('idArchivo, plantilla.nombre nombre, tipo, archivos.idPlantilla idPlantilla'); //select *
         $this->db->from('archivos'); //tabla
         $this->db->join('plantilla', 'archivos.idPlantilla = plantilla.idPlantilla');
-        $this->db->where('plantilla.estado','0');
+        $this->db->where('archivos.estado','0');
         return $this->db->get(); //devolucion del resultado de la consulta
     }
 }

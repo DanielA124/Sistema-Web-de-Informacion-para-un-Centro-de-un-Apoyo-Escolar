@@ -6,7 +6,6 @@
           <tr>
             <th scope="col">N°</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Documento</th>
             <th scope="col">Fecha Reg.</th>
             <th scope="col">Fecha Act.</th>
             <th scope="col">Materia</th>
@@ -23,23 +22,6 @@
             <tr>
                 <th scope="row"><?php echo $row->idPlantilla; ?></th>
                 <td><?php echo $row->nombre; ?></td>
-                <td align="center">
-                    <?php 
-                    $documento=$row->documento;
-                    if ($documento=="")
-                    {
-                      ?>
-                      <a href="<?php echo base_url(); ?>files/Empty.docx" class="btn btn-link"><img src="<?php echo base_url(); ?>/img/Word.png" width="25" height="25"></a>
-                      <?php
-                    }
-                    else
-                    {//mostramos foto o insertamos cuando no esta vacio
-                      ?>
-                      <a href="<?php echo base_url(); ?>files/<?php echo $documento; ?>" class="btn btn-link"><img src="<?php echo base_url(); ?>/img/Word.png" width="25" height="25"></a>
-                      <?php
-                    } 
-                    ?>
-                </td>
                 <td><?php echo $row->fechaReg; ?></td>
                 <td><?php echo $row->fechaAct; ?></td>
                 <td><?php echo $row->nombreMateria; ?></td>
@@ -63,29 +45,15 @@
           ?>
         </tbody>
       </table>
-      <div class="row">
-            <div class="col-md-6" align="left">
-                <?php 
-                echo form_open_multipart('plantilla/agregar');
-                ?>
-                <button type="submit" class="btn btn-primary">Agregar Datos</button>
-                <?php 
-                echo form_close();
-                ?>
-            </div>
-            <div class="col-md-6" align="right">
-                <?php 
-                echo form_open_multipart('archivo/agregar');
-                ?>
-                <button type="submit" class="btn btn-primary">Agregar Enciclopedia</button>
-                <?php 
-                echo form_close();
-                ?>     
-            </div>
-        </div>
-        
+      
+        <?php echo form_open_multipart('plantilla/agregar');?>
+        <button type="submit" class="btn btn-primary">Agregar Archivos</button>
+        <?php 
+        echo form_close();
+        ?>
+
         <?php echo form_open_multipart('plantilla/deshabilitados'); ?>
-        <button type="submit" class="btn btn-warning" name="deshabilitados">Ver Enciclopedias Deshabilitadas</button>
+        <button type="submit" class="btn btn-warning" name="deshabilitados">Ver Archivos Deshabilitadas</button>
         <?php 
         echo form_close();
         ?>

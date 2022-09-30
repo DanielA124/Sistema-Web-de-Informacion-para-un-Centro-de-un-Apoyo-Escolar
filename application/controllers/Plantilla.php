@@ -63,33 +63,6 @@ class Plantilla extends CI_Controller {
     {
         $idPlantilla=$_POST['idPlantilla'];
         $data['nombre']=mb_strtoupper($_POST['nombre'], 'UTF-8');
-        
-        $nombrearchivo=$idPlantilla.".docx";
-
-        // Ruta donde se guardan los archivos
-        $config['upload_path']='./files';
-        //Nombre del archivo
-        $config['file_name']=$nombrearchivo;
-        $direccion="./files/".$nombrearchivo;
-
-        if(file_exists($direccion))
-        {
-            unlink($direccion); // para borrar archivo
-        }
-        
-        // Tipos de archivos permitidos
-        $config['allowed_types']='docx';
-        $this->load->library('upload',$config);
-
-        if(!$this->upload->do_upload())
-        {
-            $data['error']=$this->upload->display_errors(); 
-        }
-        else
-        {
-            $data['documento']=$nombrearchivo;
-        }
-
         $data['idMateria']=$_POST['idMateria'];
         $data['idProfesor']=$this->session->userdata('idusuario');
         $data['fechaAct']=date("Y-m-d (H:i:s)");

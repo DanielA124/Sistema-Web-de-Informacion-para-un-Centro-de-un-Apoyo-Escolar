@@ -11,7 +11,6 @@
             <th scope="col">Dirección</th>
             <th scope="col">Edad</th>
             <th scope="col">Sexo</th>
-            <th scope="col">Fecha Nacimiento</th>
             <th scope="col">Colegio</th>
             <th scope="col">Grado</th>
             <th scope="col">Habilitar</th>
@@ -31,7 +30,6 @@
                 <td><?php echo $row->direccion; ?></td>
                 <td><?php echo $row->edad; ?></td>
                 <td><?php echo $row->sexo; ?></td>
-                <td><?php echo $row->fechaNacimiento; ?></td>
                 <td><?php echo $row->colegio; ?></td>
                 <td><?php echo $row->grado; ?></td>
 

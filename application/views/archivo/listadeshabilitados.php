@@ -8,7 +8,6 @@
     <tr>
         <th scope="col">N°</th>
         <th scope="col">Nombre</th>
-        <th scope="col">Documento</th>
         <th scope="col">Creado</th>
         <th scope="col">Modificado</th>
         <th scope="col">Nombre Materia</th>
@@ -25,7 +24,6 @@
 
         <th scope="row"><?php echo $row->idPlantilla; ?></th>
                 <td><?php echo $row->nombre; ?></td>
-                <td><?php echo $row->documento; ?></td>
                 <td><?php echo $row->fechaReg; ?></td>
                 <td><?php echo $row->fechaAct; ?></td>
                 <td><?php echo $row->nombreMateria; ?></td>

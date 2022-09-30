@@ -6,7 +6,7 @@ class Plantilla_model extends CI_Model {
 
 	public function listaplantilla()
 	{
-        $this->db->select('idPlantilla, nombre,documento, fechaReg, fechaAct, plantilla.idMateria, idProfesor, materia.nombreMateria'); //select *
+        $this->db->select('idPlantilla, nombre, fechaReg, fechaAct, plantilla.idMateria, idProfesor, materia.nombreMateria'); //select *
         $this->db->from('plantilla'); //tabla
         $this->db->join('materia', 'plantilla.idMateria = materia.idMateria');
         $this->db->where('estado','1');
@@ -34,7 +34,7 @@ class Plantilla_model extends CI_Model {
 
     public function listadatosdeshabilitados()
     {
-        $this->db->select('idPlantilla, nombre,documento, fechaReg, fechaAct, plantilla.idMateria, idProfesor, materia.nombreMateria'); //select *
+        $this->db->select('idPlantilla, nombre, fechaReg, fechaAct, plantilla.idMateria, idProfesor, materia.nombreMateria'); //select *
         $this->db->from('plantilla'); //tabla
         $this->db->join('materia', 'plantilla.idMateria = materia.idMateria');
         $this->db->where('estado','0');
