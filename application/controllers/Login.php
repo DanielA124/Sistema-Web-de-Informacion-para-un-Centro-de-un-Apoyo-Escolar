@@ -46,7 +46,7 @@ class Login extends CI_Controller {
         {
             if($this->session->userdata('tipo')=='admin')
             {
-                redirect('persona/index','refresh');
+                redirect('usuario/index','refresh');
             }
             else
             {

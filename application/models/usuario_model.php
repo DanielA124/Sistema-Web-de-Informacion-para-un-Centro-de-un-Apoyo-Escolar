@@ -1,47 +1,47 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Persona_model extends CI_Model {
+class Usuario_model extends CI_Model {
 
 
 	public function listadatos()
 	{
         $this->db->select('*'); //select *
-        $this->db->from('persona'); //tabla
+        $this->db->from('usuario'); //tabla
         $this->db->where('estado','1');
         return $this->db->get(); //devolucion del resultado de la consulta
 	}
 
-    public function agregarpersona($data)
+    public function agregarUsuario($data)
     {
-        $this->db->insert('persona',$data); //tabla
+        $this->db->insert('usuario',$data); //tabla
         return $this->db->insert_id();
     }
 
-    public function eliminardatos($idPersona)
+    public function eliminardatos($idUsuario)
     {
-        $this->db->where('idPersona',$idPersona);
-        $this->db->delete('persona');
+        $this->db->where('idUsuario',$idUsuario);
+        $this->db->delete('usuario');
     }
 
-    public function recuperardatos($idPersona)
+    public function recuperardatos($idUsuario)
     {
         $this->db->select('*'); //select *
-        $this->db->from('persona'); //tabla
-        $this->db->where('idPersona',$idPersona);
+        $this->db->from('usuario'); //tabla
+        $this->db->where('idUsuario',$idUsuario);
         return $this->db->get(); //devolucion del resultado de la consulta
     }
 
-    public function modificardatos($idPersona,$data)
+    public function modificardatos($idUsuario,$data)
     {
-        $this->db->where('idPersona',$idPersona);
-        $this->db->update('persona',$data);
+        $this->db->where('idUsuario',$idUsuario);
+        $this->db->update('usuario',$data);
     }
 
     public function listadatosdeshabilitados()
     {
         $this->db->select('*'); //select *
-        $this->db->from('persona'); //tabla
+        $this->db->from('usuario'); //tabla
         $this->db->where('estado','0');
         return $this->db->get(); //devolucion del resultado de la consulta
     }

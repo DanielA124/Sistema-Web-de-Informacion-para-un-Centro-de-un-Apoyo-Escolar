@@ -1,19 +1,19 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Persona extends CI_Controller {
+class Usuario extends CI_Controller {
 
 	public function index()
 	{
         if($this->session->userdata('tipo')=='admin')
         {
-        $lista=$this->persona_model->listadatos();
-        $data['persona']=$lista;
+        $lista=$this->usuario_model->listadatos();
+        $data['usuario']=$lista;
 
         $this->load->view('inc/headersbadmin2');
         $this->load->view('inc/sidebarsbadmin2');
         $this->load->view('inc/topbarsbadmin2');
-        $this->load->view('persona/lista',$data);
+        $this->load->view('usuario/lista',$data);
         $this->load->view('inc/creditossbadmin2');
         $this->load->view('inc/footersbadmin2');
         }
@@ -28,13 +28,13 @@ class Persona extends CI_Controller {
     {
         if($this->session->userdata('tipo')=='ayudante')
         {
-        $lista=$this->persona_model->listadatos();
-        $data['persona']=$lista;
+        $lista=$this->usuario_model->listadatos();
+        $data['usuario']=$lista;
 
         $this->load->view('inc/headersbadmin2');
         $this->load->view('inc/sidebarsbadmin2');
         $this->load->view('inc/topbarsbadmin2');
-        $this->load->view('persona/listaH',$data);
+        $this->load->view('usuario/listaH',$data);
         $this->load->view('inc/creditossbadmin2');
         $this->load->view('inc/footersbadmin2');
         }
@@ -50,7 +50,7 @@ class Persona extends CI_Controller {
         $this->load->view('inc/headersbadmin2');
         $this->load->view('inc/sidebarsbadmin2');
         $this->load->view('inc/topbarsbadmin2');
-        $this->load->view('persona/insert');
+        $this->load->view('usuario/insert');
         $this->load->view('inc/creditossbadmin2');
         $this->load->view('inc/footersbadmin2');
 		
@@ -63,19 +63,19 @@ class Persona extends CI_Controller {
         $data['apellidoMaterno']=mb_strtoupper($_POST['apellidoMaterno'], 'UTF-8');
         $data['direccion']=mb_strtoupper($_POST['direccion'], 'UTF-8');
 
-        $this->persona_model->agregarpersona($data);
-        redirect('persona/index','refresh');
+        $this->usuario_model->agregarpersona($data);
+        redirect('usuario/index','refresh');
 	}
 
 
         public function modificar()
     {
         $idPersona=$_POST['idPersona'];
-        $data['infopersona']=$this->persona_model->recuperardatos($idPersona);
+        $data['infopersona']=$this->usuario_model->recuperardatos($idPersona);
         $this->load->view('inc/headersbadmin2');
         $this->load->view('inc/sidebarsbadmin2');
         $this->load->view('inc/topbarsbadmin2');
-        $this->load->view('persona/update',$data);
+        $this->load->view('usuario/update',$data);
         $this->load->view('inc/creditossbadmin2');
         $this->load->view('inc/footersbadmin2');
     }
@@ -88,8 +88,8 @@ class Persona extends CI_Controller {
         $data['apellidoMaterno']=mb_strtoupper($_POST['apellidoMaterno'], 'UTF-8');
         $data['direccion']=mb_strtoupper($_POST['direccion'], 'UTF-8');
         $data['fechaAct']=date("Y-m-d (H:i:s)");
-        $this->persona_model->modificardatos($idPersona,$data);
-        redirect('persona/index','refresh');
+        $this->usuario_model->modificardatos($idPersona,$data);
+        redirect('usuario/index','refresh');
     }
 
     public function deshabilitarbd()
@@ -97,18 +97,18 @@ class Persona extends CI_Controller {
         $idPersona=$_POST['idPersona'];
         $data['estado']='0';
         $data['fechaAct']=date("Y-m-d (H:i:s)");
-        $this->persona_model->modificardatos($idPersona,$data);
-        redirect('persona/index','refresh');
+        $this->usuario_model->modificardatos($idPersona,$data);
+        redirect('usuario/index','refresh');
     }
 
         public function deshabilitados()
     {
-        $lista=$this->persona_model->listadatosdeshabilitados();
-        $data['persona']=$lista;
+        $lista=$this->usuario_model->listadatosdeshabilitados();
+        $data['usuario']=$lista;
         $this->load->view('inc/headersbadmin2');
         $this->load->view('inc/sidebarsbadmin2');
         $this->load->view('inc/topbarsbadmin2');
-        $this->load->view('persona/listadeshabilitados',$data);
+        $this->load->view('usuario/listadeshabilitados',$data);
         $this->load->view('inc/creditossbadmin2');
         $this->load->view('inc/footersbadmin2');
         
@@ -119,13 +119,13 @@ class Persona extends CI_Controller {
         $idPersona=$_POST['idPersona'];
         $data['estado']='1';
         $data['fechaAct']=date("Y-m-d (H:i:s)");
-        $this->persona_model->modificardatos($idPersona,$data);
-        redirect('persona/deshabilitados','refresh');
+        $this->usuario_model->modificardatos($idPersona,$data);
+        redirect('usuario/deshabilitados','refresh');
     }
 
     public function listapdf()
     {
-        $lista=$this->persona_model->listadatos();
+        $lista=$this->usuario_model->listadatos();
         $lista=$lista->result();
         
         $this->pdf=new Pdf();
