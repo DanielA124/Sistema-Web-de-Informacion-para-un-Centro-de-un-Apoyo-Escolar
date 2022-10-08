@@ -9,7 +9,7 @@
         foreach($infopadre->result() as $row)
         {
         echo form_open_multipart('apoderado/modificarbd');?>
-        <input type="hidden" name="idPersona" value="<?php echo $row->idPersona; ?>">
+        <input type="hidden" name="idApoderado" value="<?php echo $row->idApoderado; ?>">
         <div class="row">
             <div class="col-md-3">
                 <label>Nombres:</label>

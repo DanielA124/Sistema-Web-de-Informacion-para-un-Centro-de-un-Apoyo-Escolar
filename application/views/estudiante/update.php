@@ -9,7 +9,7 @@
         foreach($infoestudiante->result() as $row)
         {
         echo form_open_multipart('estudiante/modificarbd');?>
-        <input type="hidden" name="idPersona" value="<?php echo $row->idPersona; ?>">
+        <input type="hidden" name="idEstudiante" value="<?php echo $row->idEstudiante; ?>">
         <div class="row">
             <div class="col-md-3">
                 <label>Nombres:</label>
@@ -36,17 +36,9 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <label>Direccion:</label>
-            </div>
-            <div class="col-md-9">
-                <input type="text" name="direccion" placeholder="Ingrese la direccion" required value="<?php echo $row->direccion; ?>" class="form-control"><br>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
                 <label>Edad:</label>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-1">
                 <input type="number" id="tentacles" min="5" max="14" name="edad" placeholder="" class="form-control" required value="<?php echo $row->edad; ?>"><br>     
             </div>
         </div>
@@ -54,7 +46,7 @@
             <div class="col-md-3">
                 <label>Sexo:</label>
             </div>
-        <div class="col-md-9">
+        <div class="col-md-1">
             <select class="form-control" required name="sexo" value="<?php echo $row->sexo; ?>">                   
                 <option>H</option>
                 <option>M</option>

@@ -6,10 +6,10 @@
         <h2>Modificar Datos</h2>
 
         <?php 
-        foreach($infopersona->result() as $row)
+        foreach($infoUsuario->result() as $row)
         {
-        echo form_open_multipart('persona/modificarbd');?>
-        <input type="hidden" name="idPersona" value="<?php echo $row->idPersona; ?>">
+        echo form_open_multipart('usuario/modificarbd');?>
+        <input type="hidden" name="idUsuario" value="<?php echo $row->idUsuario; ?>">
         <div class="row">
             <div class="col-md-3">
                 <label>Nombres:</label>

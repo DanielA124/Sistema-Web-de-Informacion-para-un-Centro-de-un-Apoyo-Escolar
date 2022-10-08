@@ -31,14 +31,14 @@
                 <td><?php echo $row->numeroCel; ?></td>
                 <td><?php echo $row->fechaReg; ?></td>
                 <td><?php echo $row->fechaAct; ?></td>
-                <td>                  
+                <td align="center">                  
                   <?php echo form_open_multipart('usuario/modificar'); ?>
                   <input type="hidden" name="idUsuario" value="<?php echo $row->idUsuario; ?>">
 
                   <button type="submit" class=" btn btn-success"><i class="fas fa-edit"></i></button>
                   <?php echo form_close(); ?>
                 </td>
-                <td>                
+                <td align="center">                
                   <?php echo form_open_multipart('usuario/deshabilitarbd'); ?>
                   <input type="hidden" name="idUsuario" value="<?php echo $row->idUsuario; ?>">
                   <button type="submit" class="btn btn-danger" text-align="text-center"><i class="fas fa-times"></i></button>
@@ -59,7 +59,7 @@
                 <?php 
                 echo form_open_multipart('usuario/agregar');
                 ?>
-                <button type="submit" class="btn btn-primary btn-block">Agregar Datos de Personas</button>
+                <button type="submit" class="btn btn-primary btn-block">Agregar Datos del Usuario</button>
                 <?php 
                 echo form_close();
                 ?>  

@@ -4,7 +4,7 @@
 
         <h1>Lista de personas deshabilitados</h1>
 <table id="dataTable" class="table table-bordered table-responsive" width="100%" cellspacing="0">
-  <thead>
+  <thead class="bg-info text-dark">
     <tr>
         <th scope="col">N°</th>
         <th scope="col">Nombres</th>
@@ -20,21 +20,21 @@
   <tbody>
     <?php
     $indice=1;
-    foreach ($persona->result() as $row)
+    foreach ($usuario->result() as $row)
     {
         ?>
 
         <tr>
-                <th scope="row"><?php echo $row->idPersona; ?></th>
+                <th scope="row"><?php echo $row->idUsuario; ?></th>
                 <td><?php echo $row->nombres; ?></td>
                 <td><?php echo $row->apellidoPaterno; ?></td>
                 <td><?php echo $row->apellidoMaterno; ?></td>
                 <td><?php echo $row->direccion; ?></td>
                 <td><?php echo $row->fechaReg; ?></td>
                 <td><?php echo $row->fechaAct; ?></td>
-                <td>        
+                <td align="center">        
                   <?php echo form_open_multipart('persona/habilitarbd'); ?>
-                  <input type="hidden" name="idPersona" value="<?php echo $row->idPersona; ?>">
+                  <input type="hidden" name="idUsuario" value="<?php echo $row->idUsuario; ?>">
                   <button type="submit" class="btn btn-success"><i class="fas fa-check"></i></button>
                   <?php echo form_close(); ?>
                 </td>

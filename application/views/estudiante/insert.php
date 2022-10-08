@@ -31,17 +31,9 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <label>Direccion:</label>
-            </div>
-            <div class="col-md-9">
-                <input type="text" name="direccion" placeholder="" class="form-control" required><br>     
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
                 <label>Edad:</label>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-1">
                 <input type="number" id="tentacles" value="5" min="5" max="14" name="edad" class="form-control" required><br>     
             </div>
         </div>
@@ -49,7 +41,7 @@
             <div class="col-md-3">
                 <label>Sexo:</label>
             </div>
-        <div class="col-md-9">
+        <div class="col-md-1">
             <select class="form-select form-control" aria-label="Default select example" required name="sexo">
                 <option>H</option>
                 <option>M</option>

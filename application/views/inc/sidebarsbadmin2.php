@@ -25,7 +25,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Ver:</h6>
                         <?php echo form_open_multipart('usuario/index'); ?>
-                            <button type="submit" class="btn btn-light btn-block btn-sm">Profesores</button>
+                            <button type="submit" class="btn btn-light btn-block btn-sm">Usuarios</button>
                         <?php echo form_close(); ?>
                         <?php echo form_open_multipart('apoderado/index'); ?>
                             <button type="submit" class="btn btn-light btn-block btn-sm">Padres</button>

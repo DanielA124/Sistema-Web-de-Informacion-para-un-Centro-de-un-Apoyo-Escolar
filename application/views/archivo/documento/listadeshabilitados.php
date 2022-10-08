@@ -4,7 +4,7 @@
 
         <h1>Lista de Documentos Deshabilitados</h1>
 <table id="dataTable" class="table table-bordered table-responsive" width="100%" cellspacing="0">
-  <thead>
+  <thead class="bg-info text-dark">
           <tr>
             <th scope="col">N°</th>
             <th scope="col">Nombre</th>

@@ -2,7 +2,7 @@
   <div class="card-body">
     <div class="col-md-12">
       <table id="dataTable" class="table table-bordered table-responsive" width="100%" cellspacing="0">           
-        <thead>
+        <thead class="bg-info text-dark">
           <tr>
             <th scope="col">N°</th>
             <th scope="col">Nombre</th>

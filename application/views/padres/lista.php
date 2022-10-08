@@ -2,7 +2,7 @@
   <div class="card-body">
     <div class="col-md-12">
       <table id="dataTable" class="table table-bordered table-responsive" width="100%" cellspacing="0">           
-        <thead>
+        <thead class="bg-info text-dark">
           <tr>
             <th scope="col">N°</th>
             <th scope="col">Nombre Completo</th>
@@ -21,7 +21,7 @@
           {
           ?>
             <tr>
-                <th scope="row"><?php echo $row->idPersona; ?></th>
+                <th scope="row"><?php echo $row->idApoderado; ?></th>
                 <td><?php echo $row->apellidoPaterno; ?> 
                     <?php echo $row->apellidoMaterno; ?> 
                     <?php echo $row->nombres; ?></td>
@@ -29,16 +29,16 @@
                 <td><?php echo $row->edad; ?></td>
                 <td><?php echo $row->numReferencia; ?></td>
                 <td><?php echo $row->estadoCivil; ?></td>
-                <td>                  
+                <td align="center">                  
                   <?php echo form_open_multipart('apoderado/modificar'); ?>
-                  <input type="hidden" name="idPersona" value="<?php echo $row->idPersona; ?>">
+                  <input type="hidden" name="idApoderado" value="<?php echo $row->idApoderado; ?>">
 
                   <button type="submit" class=" btn btn-success"><i class="fas fa-edit"></i></button>
                   <?php echo form_close(); ?>
                 </td>
-                <td>                
+                <td align="center">                
                   <?php echo form_open_multipart('apoderado/deshabilitarbd'); ?>
-                  <input type="hidden" name="idPersona" value="<?php echo $row->idPersona; ?>">
+                  <input type="hidden" name="idApoderado" value="<?php echo $row->idApoderado; ?>">
                   <button type="submit" class="btn btn-danger" text-align="text-center"><i class="fas fa-times"></i></button>
                   <?php echo form_close(); ?>
                 </td>
@@ -49,18 +49,24 @@
           ?>
         </tbody>
       </table>
-        <?php 
-        echo form_open_multipart('apoderado/agregar');
-        ?>
-        <button type="submit" class="btn btn-primary">Agregar Datos de Apoderado</button>
-        <?php 
-        echo form_close();
-        ?>
-        <?php echo form_open_multipart('apoderado/deshabilitados'); ?>
-        <button type="submit" class="btn btn-warning" name="deshabilitados">Ver Padres Deshabilitados</button>
-        <?php 
-        echo form_close();
-        ?>
+      <div class="row">
+            <div class="col-md-6">
+                <?php 
+                echo form_open_multipart('apoderado/agregar');
+                ?>
+                <button type="submit" class="btn btn-primary btn-block">Agregar Datos del Apoderado</button>
+                <?php 
+                echo form_close();
+                ?> 
+            </div>
+            <div class="col-md-6">
+                <?php echo form_open_multipart('apoderado/deshabilitados'); ?>
+                <button type="submit" class="btn btn-warning btn-block" name="deshabilitados">Ver Padres Deshabilitados</button>
+                <?php 
+                echo form_close();
+                ?>
+            </div>
+        </div>    
     </div>
   </div>
 </div>

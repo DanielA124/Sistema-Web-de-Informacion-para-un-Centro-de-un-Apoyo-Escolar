@@ -7,7 +7,7 @@ class Estudiante extends CI_Controller {
 	{
         if($this->session->userdata('tipo')=='admin')
         {
-        $lista=$this->estudiante_model->listaestudiantes();
+        $lista=$this->estudiante_model->listaEstudiantes();
         $data['estudiante']=$lista;
 
         $this->load->view('inc/headersbadmin2');
@@ -41,23 +41,19 @@ class Estudiante extends CI_Controller {
         $data['nombres']=mb_strtoupper($_POST['nombres'], 'UTF-8');
         $data['apellidoPaterno']=mb_strtoupper($_POST['apellidoPaterno'], 'UTF-8');
         $data['apellidoMaterno']=mb_strtoupper($_POST['apellidoMaterno'], 'UTF-8');
-        $data['direccion']=mb_strtoupper($_POST['direccion'], 'UTF-8');
-        $idPersona= $this->persona_model->agregarpersona($data);
-
-        $datos['idEstudiante']=$idPersona;
-        $datos['edad']=$_POST['edad'];
-        $datos['sexo']=$_POST['sexo'];
-        $datos['colegio']=mb_strtoupper($_POST['colegio'], 'UTF-8');
-        $datos['grado']=mb_strtoupper($_POST['grado'], 'UTF-8');
+        $data['edad']=$_POST['edad'];
+        $data['sexo']=$_POST['sexo'];
+        $data['colegio']=mb_strtoupper($_POST['colegio'], 'UTF-8');
+        $data['grado']=mb_strtoupper($_POST['grado'], 'UTF-8');
         
-        $this->estudiante_model->agregarestudiante($datos);
+        $this->estudiante_model->agregarEstudiante($data);
         redirect('estudiante/index','refresh');
     }
 
     public function modificar()
     {
-        $idEstudiante=$_POST['idPersona'];
-        $data['infoestudiante']=$this->estudiante_model->recuperarestudiante($idEstudiante);
+        $idEstudiante=$_POST['idEstudiante'];
+        $data['infoestudiante']=$this->estudiante_model->recuperarEstudiante($idEstudiante);
         $this->load->view('inc/headersbadmin2');
         $this->load->view('inc/sidebarsbadmin2');
         $this->load->view('inc/topbarsbadmin2');
@@ -68,34 +64,31 @@ class Estudiante extends CI_Controller {
 
     public function modificarbd()
     {
-        $idEstudiante=$_POST['idPersona'];
+        $idEstudiante=$_POST['idEstudiante'];
         $data['nombres']=mb_strtoupper($_POST['nombres'], 'UTF-8');
         $data['apellidoPaterno']=mb_strtoupper($_POST['apellidoPaterno'], 'UTF-8');
         $data['apellidoMaterno']=mb_strtoupper($_POST['apellidoMaterno'], 'UTF-8');
-        $data['direccion']=mb_strtoupper($_POST['direccion'], 'UTF-8');
         $data['fechaAct']=date("Y-m-d (H:i:s)");
-        $this->estudiante_model->modificarPersona($idEstudiante,$data);
-
-        $datos['edad']=$_POST['edad'];
-        $datos['sexo']=$_POST['sexo'];
-        $datos['colegio']=mb_strtoupper($_POST['colegio'], 'UTF-8');
-        $datos['grado']=mb_strtoupper($_POST['grado'], 'UTF-8');
-        $this->estudiante_model->modificarEstudiante($idEstudiante,$datos);
+        $data['edad']=$_POST['edad'];
+        $data['sexo']=$_POST['sexo'];
+        $data['colegio']=mb_strtoupper($_POST['colegio'], 'UTF-8');
+        $data['grado']=mb_strtoupper($_POST['grado'], 'UTF-8');
+        $this->estudiante_model->modificarEstudiante($idEstudiante,$data);
         redirect('estudiante/index','refresh');
     }
 
     public function deshabilitarbd()
     {
-        $idEstudiante=$_POST['idPersona'];
+        $idEstudiante=$_POST['idEstudiante'];
         $data['estado']='0';
         $data['fechaAct']=date("Y-m-d (H:i:s)");
-        $this->estudiante_model->modificarPersona($idEstudiante,$data);
+        $this->estudiante_model->modificarEstudiante($idEstudiante,$data);
         redirect('estudiante/index','refresh');
     }
 
     public function deshabilitados()
     {
-        $lista=$this->estudiante_model->listaestudiantesdeshabilitados();
+        $lista=$this->estudiante_model->listaEstudiantesdeshabilitados();
         $data['apoderado']=$lista;
         $this->load->view('inc/headersbadmin2');
         $this->load->view('inc/sidebarsbadmin2');
@@ -108,10 +101,10 @@ class Estudiante extends CI_Controller {
 
         public function habilitarbd()
     {
-        $idEstudiante=$_POST['idPersona'];
+        $idEstudiante=$_POST['idEstudiante'];
         $data['estado']='1';
         $data['fechaAct']=date("Y-m-d (H:i:s)");
-        $this->estudiante_model->modificarPersona($idEstudiante,$data);
+        $this->estudiante_model->modificarEstudiante($idEstudiante,$data);
         redirect('estudiante/index','refresh');
     }
     
