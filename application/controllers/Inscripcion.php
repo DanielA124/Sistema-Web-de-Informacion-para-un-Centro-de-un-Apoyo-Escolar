@@ -41,6 +41,7 @@ class Inscripcion extends CI_Controller {
         $data['idApoderado']=$_POST['idApoderado'];
         $data['idEstudiante']=$_POST['idEstudiante'];
         $data['observaciones']=mb_strtoupper($_POST['observaciones'], 'UTF-8');
+        $data['horario']=mb_strtoupper($_POST['horario'], 'UTF-8');
         
         
         $this->inscripcion_model->agregarInscripcion($data);
@@ -49,9 +50,8 @@ class Inscripcion extends CI_Controller {
 
     public function modificar()
     {
-        $idApoderado=$_POST['idApoderado'];
-        $idEstudiante=$_POST['idEstudiante'];
-        $data['infoInscritos']=$this->inscripcion_model->recuperarInscritos($idApoderado,$idEstudiante);
+        $idInscripcion=$_POST['idInscripcion'];
+        $data['infoInscritos']=$this->inscripcion_model->recuperarInscritos($idInscripcion);
         $this->load->view('inc/headersbadmin2');
         $this->load->view('inc/sidebarsbadmin2');
         $this->load->view('inc/topbarsbadmin2');
@@ -62,26 +62,26 @@ class Inscripcion extends CI_Controller {
 
     public function modificarbd()
     {
-        $idApoderado=$_POST['idApoderado'];
-        $idEstudiante=$_POST['idEstudiante'];
+        $idInscripcion=$_POST['idInscripcion'];
+        $data['idApoderado']=$_POST['idApoderado'];
+        $data['idEstudiante']=$_POST['idEstudiante'];
         $data['observaciones']=mb_strtoupper($_POST['observaciones'], 'UTF-8');
-        $this->inscripcion_model->modificarInscritos($idApoderado,$idEstudiante,$data);
+        $data['horario']=mb_strtoupper($_POST['horario'], 'UTF-8');
+        $this->inscripcion_model->modificarInscritos($idInscripcion,$data);
         redirect('inscripcion/index','refresh');
     }
 
     public function deshabilitarbd()
     {
-        $idApoderado=$_POST['idApoderado'];
-        $idEstudiante=$_POST['idEstudiante'];
+        $idInscripcion=$_POST['idInscripcion'];
         $data['estado']='0';
-        $data['fechaAct']=date("Y-m-d (H:i:s)");
-        $this->inscripcion_model->modificarPersona($idApoderado,$idEstudiante,$data);
+        $this->inscripcion_model->modificarInscritos($idInscripcion,$data);
         redirect('inscripcion/index','refresh');
     }
 
     public function deshabilitados()
     {
-        $lista=$this->profesor_model->listaprofesoresdeshabilitados();
+        $lista=$this->inscripcion_model->listaInscritosdeshabilitados();
         $data['inscritos']=$lista;
         $this->load->view('inc/headersbadmin2');
         $this->load->view('inc/sidebarsbadmin2');
@@ -94,11 +94,9 @@ class Inscripcion extends CI_Controller {
 
         public function habilitarbd()
     {
-        $idApoderado=$_POST['idPersona'];
-        $idEstudiante=$_POST['idPersona'];
+        $idInscripcion=$_POST['idInscripcion'];
         $data['estado']='1';
-        $data['fechaAct']=date("Y-m-d (H:i:s)");
-        $this->inscripcion_model->modificarPersona($idApoderado,$idEstudiante,$data);
+        $this->inscripcion_model->modificarInscritos($idInscripcion,$data);
         redirect('inscripcion/index','refresh');
     }
 }

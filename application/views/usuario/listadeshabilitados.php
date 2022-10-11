@@ -2,7 +2,7 @@
   <div class="card-body">
     <div class="col-md-12">
 
-        <h1>Lista de personas deshabilitados</h1>
+        <h1>Lista de Usuarios Deshabilitados</h1>
 <table id="dataTable" class="table table-bordered table-responsive" width="100%" cellspacing="0">
   <thead class="bg-info text-dark">
     <tr>
@@ -48,7 +48,7 @@
   </tbody>
 </table>
         <?php echo form_open_multipart('persona/index'); ?>
-        <button type="submit" class="btn btn-primary" >Ver Personas Habilitadas</button>
+        <button type="submit" class="btn btn-primary" >Ver Usuarios Habilitados</button>
         <?php echo form_close(); ?>
         <br>
         </div>

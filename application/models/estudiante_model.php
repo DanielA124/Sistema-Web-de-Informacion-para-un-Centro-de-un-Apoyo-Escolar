@@ -14,7 +14,6 @@ class Estudiante_model extends CI_Model {
 
     public function agregarEstudiante($data)
     {
-        $this->db->trans_begin();
         $this->db->insert('estudiante',$data); //tabla
     }
 

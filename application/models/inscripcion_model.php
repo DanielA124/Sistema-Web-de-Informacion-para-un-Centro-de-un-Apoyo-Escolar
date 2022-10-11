@@ -18,7 +18,6 @@ class Inscripcion_model extends CI_Model {
 
     public function agregarInscripcion($data)
     {
-        $this->db->trans_begin();
         $this->db->insert('inscripcion',$data); //tabla
     }
 
@@ -30,7 +29,7 @@ class Inscripcion_model extends CI_Model {
         return $this->db->get(); //devolucion del resultado de la consulta
     }
 
-    public function modificarInscritos($data)
+    public function modificarInscritos($idInscripcion,$data)
     {
         $this->db->where('idInscripcion',$idInscripcion);
         $this->db->update('inscripcion',$data);
@@ -38,8 +37,8 @@ class Inscripcion_model extends CI_Model {
 
     public function listaInscritosdeshabilitados()
     {
-        $this->db->select('inscripcion.idInscripcion, inscripcion.idApoderado, apoderado.nombres, apoderado.apellidoPaterno, apoderado.apellidoMaterno, 
-                            inscripcion.idEstudiante, estudiante.nombres, estudiante.apellidoPaterno, estudiante.apellidoMaterno,
+         $this->db->select('inscripcion.idInscripcion, inscripcion.idApoderado, apoderado.nombres ANombre, apoderado.apellidoPaterno AApP, apoderado.apellidoMaterno AApM, 
+                            inscripcion.idEstudiante, estudiante.nombres ENombre, estudiante.apellidoPaterno EApP, estudiante.apellidoMaterno EApM,
                             inscripcion.observaciones, horario'); //select *
         $this->db->from('inscripcion'); //tabla
         $this->db->join('estudiante', 'inscripcion.idEstudiante=estudiante.idEstudiante');

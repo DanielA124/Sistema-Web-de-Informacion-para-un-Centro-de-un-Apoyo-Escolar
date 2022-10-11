@@ -22,7 +22,7 @@
                 <td><?php echo $row->nombre; ?></td>
                 <td><a href="<?php echo base_url(); ?>files/<?php echo $row->tipo; ?>"><?php echo $row->tipo; ?></a></td>
                 <td><?php echo $row->idPlantilla; ?></td>
-                <td>                
+                <td align="center">                
                   <?php echo form_open_multipart('archivo/deshabilitarbd'); ?>
                   <input type="hidden" name="idArchivo" value="<?php echo $row->idArchivo; ?>">
                   <button type="submit" class="btn btn-danger" text-align="text-center"><i class="fas fa-times"></i></button>
@@ -65,12 +65,15 @@
                 ?>     
             </div>
         </div><br>
-         
-        <?php echo form_open_multipart('archivo/deshabilitados'); ?>
-        <button type="submit" class="btn btn-warning btn-block" name="deshabilitados">Ver Enciclopedias Deshabilitadas</button>
-        <?php 
-        echo form_close();
-        ?>
+        <div class="row">
+            <div class="col-md-12">
+                <?php echo form_open_multipart('archivo/deshabilitados'); ?>
+                <button type="submit" class="btn btn-warning btn-block" name="deshabilitados">Ver Documentos Deshabilitados</button>
+                <?php 
+                echo form_close();
+                ?>
+            </div>
+        </div>    
     </div>
   </div>
 </div>

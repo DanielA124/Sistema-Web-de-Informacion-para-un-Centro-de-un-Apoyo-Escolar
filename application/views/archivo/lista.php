@@ -45,18 +45,22 @@
           ?>
         </tbody>
       </table>
-      
-        <?php echo form_open_multipart('plantilla/agregar');?>
-        <button type="submit" class="btn btn-primary">Agregar Archivos</button>
-        <?php 
-        echo form_close();
-        ?>
-
-        <?php echo form_open_multipart('plantilla/deshabilitados'); ?>
-        <button type="submit" class="btn btn-warning" name="deshabilitados">Ver Archivos Deshabilitadas</button>
-        <?php 
-        echo form_close();
-        ?>
+      <div class="row">
+            <div class="col-md-6">
+                <?php echo form_open_multipart('plantilla/agregar');?>
+                <button type="submit" class="btn btn-primary btn-block">Agregar Archivos</button>
+                <?php 
+                echo form_close();
+                ?>
+            </div>
+            <div class="col-md-6">
+                <?php echo form_open_multipart('plantilla/deshabilitados'); ?>
+                <button type="submit" class="btn btn-warning btn-block" name="deshabilitados">Ver Archivos Deshabilitadas</button>
+                <?php 
+                echo form_close();
+                ?>
+            </div>
+        </div>        
     </div>
   </div>
 </div>

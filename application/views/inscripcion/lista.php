@@ -50,18 +50,24 @@
           ?>
         </tbody>
       </table>
-        <?php 
-        echo form_open_multipart('inscripcion/agregar');
-        ?>
-        <button type="submit" class="btn btn-primary">Agregar Datos para Inscripcion</button>
-        <?php 
-        echo form_close();
-        ?>
-        <?php echo form_open_multipart('inscripcion/deshabilitados'); ?>
-        <button type="submit" class="btn btn-warning" name="deshabilitados">Ver Inscripciones Deshabilitadas</button>
-        <?php 
-        echo form_close();
-        ?>
+      <div class="row">
+            <div class="col-md-6">
+                <?php 
+                echo form_open_multipart('inscripcion/agregar');
+                ?>
+                <button type="submit" class="btn btn-primary btn-block">Agregar Datos para Inscripcion</button>
+                <?php 
+                echo form_close();
+                ?>  
+            </div>
+            <div class="col-md-6">
+                <?php echo form_open_multipart('inscripcion/deshabilitados'); ?>
+                <button type="submit" class="btn btn-warning btn-block" name="deshabilitados">Ver Inscripciones Deshabilitadas</button>
+                <?php 
+                echo form_close();
+                ?>
+            </div>
+        </div>  
     </div>
   </div>
 </div>

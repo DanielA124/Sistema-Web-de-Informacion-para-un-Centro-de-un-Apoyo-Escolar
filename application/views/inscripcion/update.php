@@ -9,17 +9,14 @@
         foreach($infoInscritos->result() as $row)
         {
         echo form_open_multipart('inscripcion/modificarbd');?>
-        <input type="hidden" name="idApoderado" value="<?php echo $row->idApoderado; ?>">
-        <input type="hidden" name="idEstudiante" value="<?php echo $row->idEstudiante; ?>">
+        <input type="hidden" name="idInscripcion" value="<?php echo $row->idInscripcion; ?>">
         <div class="row">
             <div class="col-md-3">
                 <label>Apoderado/a:</label>
             </div>
             <div class="col-md-9">
-                <select class="form-control" required name="idApoderado" value="<?php echo $row->idApoderado; ?>">
-                    <?php $apoderado=$this->db->query("SELECT idApoderado, CONCAT(persona.nombres, ' ', persona.apellidoPaterno, ' ',persona.apellidoMaterno) AS NombreA
-                                                        FROM apoderado
-                                                        JOIN persona ON apoderado.idApoderado=persona.idPersona;"); 
+                <select class="form-select form-control" required name="idApoderado" value="<?php echo $row->idApoderado; ?>">
+                    <?php $apoderado=$this->db->query("SELECT idApoderado, CONCAT(apoderado.nombres, ' ', apoderado.apellidoPaterno, ' ',IFNULL(apoderado.apellidoMaterno,  ' ')) AS NombreA FROM apoderado"); 
                     foreach ($apoderado->result() as $rowApoderado)
                     {
                     ?>
@@ -27,7 +24,7 @@
                     <?php
                     }
                     ?>
-                </select><br>       
+                </select><br>
             </div>
         </div>
         <div class="row">
@@ -35,10 +32,8 @@
                 <label>Estudiante:</label>
             </div>
             <div class="col-md-9">
-                <select class="form-control" required name="idEstudiante" value="<?php echo $row->idApoderado; ?>">
-                    <?php $estudiante=$this->db->query("SELECT idEstudiante, CONCAT(persona.nombres, ' ', persona.apellidoPaterno, ' ',persona.apellidoMaterno) AS NombreE
-                                                        FROM estudiante
-                                                        JOIN persona ON estudiante.idEstudiante=persona.idPersona;"); 
+                <select class="form-select form-control" required name="idEstudiante" value="<?php echo $row->idEstudiante; ?>">
+                    <?php $estudiante=$this->db->query("SELECT idEstudiante, CONCAT(estudiante.nombres, ' ', estudiante.apellidoPaterno, ' ',IFNULL(estudiante.apellidoMaterno,  ' ')) AS NombreE FROM estudiante"); 
                     foreach ($estudiante->result() as $rowEstudiante)
                     {
                     ?>
@@ -46,7 +41,19 @@
                     <?php
                     }
                     ?>
-                </select><br>     
+                </select><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label>Horario:</label>
+            </div>
+            <div class="col-md-9">
+                <select class="form-select form-control" aria-label="Default select example" required name="horario" value="<?php echo $row->horario; ?>">
+                <option>Mañana</option>
+                <option>Tarde</option>
+                <option>Nocturno</option>
+                </select><br>   
             </div>
         </div>
         <div class="row">
@@ -54,7 +61,7 @@
                 <label>Observaciones:</label>
             </div>
             <div class="col-md-9">
-                <textarea class="form-control" name="observaciones" placeholder="" required><?php echo $row->observaciones; ?></textarea>   
+                <textarea class="form-control" name="observaciones" placeholder="" required><?php echo $row->observaciones; ?></textarea>
             </div>
         </div>
         <button type="submit" class="btn btn-success">Modificar Datos</button>

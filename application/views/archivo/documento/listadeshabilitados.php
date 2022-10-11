@@ -24,7 +24,7 @@
                 <td><?php echo $row->nombre; ?></td>
                 <td><?php echo $row->tipo; ?></td>
                 <td><?php echo $row->idPlantilla; ?></td>
-                <td>                
+                <td align="center">                
                   <?php echo form_open_multipart('archivo/habilitarbd'); ?>
                   <input type="hidden" name="idArchivo" value="<?php echo $row->idArchivo; ?>">
                   <button type="submit" class="btn btn-success" text-align="text-center"><i class="fas fa-check"></i></button>
@@ -37,10 +37,13 @@
           ?>
         </tbody>
 </table>
-        <?php echo form_open_multipart('archivo/index'); ?>
-        <button type="submit" class="btn btn-primary" >Ver Archivos Habilitados</button>
-        <?php echo form_close(); ?>
-        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <?php echo form_open_multipart('archivo/index'); ?>
+                <button type="submit" class="btn btn-primary btn-block" >Ver Documentos Habilitados</button>
+                <?php echo form_close(); ?>
+            </div>
         </div>
+      </div>
     </div>
 </div>

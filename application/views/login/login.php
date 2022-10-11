@@ -20,8 +20,13 @@
                                 <input type="text" class="form-control" name="nombreUsuario" placeholder="Ingrese su Nombre de Usuario" required>
                             </div>
                             <div class="col-md-12 mb-3">
-                               <label class="form-label">Password:</label>
-                               <input type="password" class="form-control" name="password" placeholder="Ingrese su Password" required>
+                               <label class="form-label">Password:</label><br>
+                              <div class="input-group">
+                               <input ID="Password" type="password" class="form-control" name="password" placeholder="Ingrese su Password" required>
+                               <div class="input-group-append">
+                               <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
+                               </div>
+                              </div>
                             </div>
                       <button class="w-100 btn btn-primary" type="submit">Ingresar</button>
                         <?php

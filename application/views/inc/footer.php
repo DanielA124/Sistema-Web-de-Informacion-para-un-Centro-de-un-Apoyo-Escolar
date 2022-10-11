@@ -66,6 +66,26 @@
   });
 </script>
 
+<script type="text/javascript">
+    function mostrarPassword(){
+        var cambio = document.getElementById("Password");
+        if(cambio.type == "password"){
+          cambio.type = "text";
+          $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+        }else{
+          cambio.type = "password";
+          $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+        }
+      } 
+      
+      $(document).ready(function () {
+      //CheckBox mostrar contraseña
+      $('#ShowPassword').click(function () {
+        $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
+      });
+    });
+</script>
+
     <script src="<?php echo base_url(); ?>sbadmin2/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url(); ?>sbadmin2/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 

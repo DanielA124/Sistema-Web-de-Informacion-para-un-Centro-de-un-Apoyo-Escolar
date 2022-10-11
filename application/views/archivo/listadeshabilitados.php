@@ -2,7 +2,7 @@
   <div class="card-body">
     <div class="col-md-12">
 
-        <h1>Lista de personas deshabilitados</h1>
+        <h1>Lista de Archivos Deshabilitados</h1>
 <table id="dataTable" class="table table-bordered table-responsive" width="100%" cellspacing="0">
   <thead class="bg-info text-dark">
     <tr>
@@ -41,10 +41,13 @@
 
   </tbody>
 </table>
-        <?php echo form_open_multipart('plantilla/index'); ?>
-        <button type="submit" class="btn btn-primary" >Ver Plantillas Habilitadas</button>
+      <div class="row">
+            <div class="col-md-12">
+                <?php echo form_open_multipart('plantilla/index'); ?>
+        <button type="submit" class="btn btn-primary btn-block" >Ver Archivos Habilitados</button>
         <?php echo form_close(); ?>
-        <br>
-        </div>
+            </div>
+      </div>
     </div>
+  </div>
 </div>
