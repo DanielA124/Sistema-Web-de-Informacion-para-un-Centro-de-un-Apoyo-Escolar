@@ -53,6 +53,22 @@
                 <input type="text" name="numCelular" placeholder="" class="form-control" required><br>     
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label>Nombre de Usuario:</label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" name="nombreUsuario" placeholder="" class="form-control" required><br>     
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label>Contraseña:</label>
+            </div>
+            <div class="col-md-9">
+                <input type="password" name="password" placeholder="" class="form-control" required><br>     
+            </div>
+        </div>
         <br>
         <button type="submit" class="btn btn-primary"><i class="fas fa-plus-circle"> </i> Agregar Datos Persona</button>
        

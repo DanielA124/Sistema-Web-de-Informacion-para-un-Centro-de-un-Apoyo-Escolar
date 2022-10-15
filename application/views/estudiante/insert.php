@@ -60,8 +60,18 @@
             <div class="col-md-3">
                 <label>Grado:</label>
             </div>
-            <div class="col-md-9">
-                <input type="text" name="grado" placeholder="" class="form-control" required><br>     
+            <div class="col-md-2">
+                <select class="form-select form-control" aria-label="Default select example" required name="grado" >
+                <option>Kinder</option>
+                <option>1ro. Prim.</option>
+                <option>2do. Prim.</option>
+                <option>3ro. Prim.</option>
+                <option>4to. Prim.</option>
+                <option>5to. Prim.</option>
+                <option>6to. Prim.</option>
+                <option>1ro. Sec.</option>
+                <option>2do. Sec.</option>
+                </select><br>   
             </div>
         </div>
         

@@ -40,7 +40,7 @@ class Plantilla extends CI_Controller {
     {
         $data['nombre']=mb_strtoupper($_POST['nombre'], 'UTF-8');
         $data['idMateria']=$_POST['idMateria'];
-        $data['idProfesor']=$this->session->userdata('idusuario');
+        $data['idUsuario']=$this->session->userdata('idusuario');
 
         $this->plantilla_model->agregardatos($data);
         redirect('plantilla/index','refresh');        
@@ -64,7 +64,7 @@ class Plantilla extends CI_Controller {
         $idPlantilla=$_POST['idPlantilla'];
         $data['nombre']=mb_strtoupper($_POST['nombre'], 'UTF-8');
         $data['idMateria']=$_POST['idMateria'];
-        $data['idProfesor']=$this->session->userdata('idusuario');
+        $data['idUsuario']=$this->session->userdata('idUsuario');
         $data['fechaAct']=date("Y-m-d (H:i:s)");
         $this->plantilla_model->modificardatos($idPlantilla,$data);
         redirect('plantilla/index','refresh');

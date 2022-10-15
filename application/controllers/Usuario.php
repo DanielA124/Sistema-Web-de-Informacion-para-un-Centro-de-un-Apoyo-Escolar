@@ -62,6 +62,10 @@ class Usuario extends CI_Controller {
         $data['apellidoPaterno']=mb_strtoupper($_POST['apellidoPaterno'], 'UTF-8');
         $data['apellidoMaterno']=mb_strtoupper($_POST['apellidoMaterno'], 'UTF-8');
         $data['direccion']=mb_strtoupper($_POST['direccion'], 'UTF-8');
+        $data['horario']=mb_strtoupper($_POST['horario'], 'UTF-8');
+        $data['numeroCel']=$_POST['numeroCel'];
+        $data['nombreUsuario']=$_POST['nombreUsuario'];
+        $data['password']=md5($_POST['password']);
 
         $this->usuario_model->agregarUsuario($data);
         redirect('usuario/index','refresh');
@@ -87,7 +91,12 @@ class Usuario extends CI_Controller {
         $data['apellidoPaterno']=mb_strtoupper($_POST['apellidoPaterno'], 'UTF-8');
         $data['apellidoMaterno']=mb_strtoupper($_POST['apellidoMaterno'], 'UTF-8');
         $data['direccion']=mb_strtoupper($_POST['direccion'], 'UTF-8');
+        $data['horario']=mb_strtoupper($_POST['horario'], 'UTF-8');
+        $data['numeroCel']=$_POST['numeroCel'];
+        $data['nombreUsuario']=$_POST['nombreUsuario'];
+        $data['password']=md5($_POST['password']);
         $data['fechaAct']=date("Y-m-d (H:i:s)");
+        
         $this->usuario_model->modificardatos($idUsuario,$data);
         redirect('usuario/index','refresh');
     }

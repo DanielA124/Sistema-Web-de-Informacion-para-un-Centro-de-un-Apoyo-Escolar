@@ -41,7 +41,7 @@
             <div class="col-md-3">
                 <label>Edad:</label>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-1">
                 <input type="number" id="tentacles" min="20" max="80" name="edad" placeholder="" class="form-control" required><br>     
             </div>
         </div>
@@ -57,7 +57,7 @@
             <div class="col-md-3">
                 <label>Estado Civil:</label>
             </div>
-        <div class="col-md-9">
+        <div class="col-md-2">
             <select class="form-select form-control" aria-label="Default select example" required name="estadoCivil" >
                 <option>Soltero/a</option>
                 <option>Casado/a</option>

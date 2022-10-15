@@ -5,8 +5,10 @@
         <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion " id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-text mx-3">Cruz del Sur</div>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+                    <div class="sidebar-brand-text mx-3">Cruz del Sur</div>    
+                <?php echo form_close(); ?>
+                
             </a>            
             <hr class="sidebar-divider">
             <!-- Heading -->
@@ -51,7 +53,14 @@
                         <?php echo form_open_multipart('inscripcion/index'); ?>
                             <button type="submit" class="btn btn-light btn-block btn-sm">Inscritos</button>
                         <?php echo form_close(); ?>
+                        <?php echo form_open_multipart('pago/index'); ?>
+                            <button type="submit" class="btn btn-light btn-block btn-sm">Pagos</button>
+                        <?php echo form_close(); ?>
+                        <?php echo form_open_multipart('mensualidad/index'); ?>
+                            <button type="submit" class="btn btn-light btn-block btn-sm">Mensualidad</button>
+                        <?php echo form_close(); ?>
                     </div>
+
                 </div>
             </li>
 

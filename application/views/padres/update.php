@@ -46,7 +46,7 @@
             <div class="col-md-3">
                 <label>Edad:</label>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-1">
                 <input type="number" id="tentacles" min="20" max="80" name="edad" placeholder="" class="form-control" required value="<?php echo $row->edad; ?>"><br>     
             </div>
         </div>
@@ -62,7 +62,7 @@
             <div class="col-md-3">
                 <label>Estado Civil:</label>
             </div>
-        <div class="col-md-9">
+        <div class="col-md-2">
             <select class="form-control" required name="estadoCivil" value="<?php echo $row->estadoCivil; ?>">                   
                 <option>Soltero/a</option>
                 <option>Casado/a</option>
