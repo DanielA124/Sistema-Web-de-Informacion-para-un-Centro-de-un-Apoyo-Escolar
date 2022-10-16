@@ -3,7 +3,7 @@
         <div class="col-md-12">
 
         <?php 
-        echo form_open_multipart('persona/agregarbd');
+        echo form_open_multipart('usuario/agregarbd');
         ?>
         <div class="row">
             <div class="col-md-3">
@@ -50,7 +50,7 @@
                 <label>Num. Celular:</label>
             </div>
             <div class="col-md-9">
-                <input type="text" name="numCelular" placeholder="" class="form-control" required><br>     
+                <input type="text" name="numeroCel" placeholder="" class="form-control" required><br>     
             </div>
         </div>
         <div class="row">
@@ -70,7 +70,7 @@
             </div>
         </div>
         <br>
-        <button type="submit" class="btn btn-primary"><i class="fas fa-plus-circle"> </i> Agregar Datos Persona</button>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-plus-circle"> </i> Agregar Datos Usuario</button>
        
         <?php 
         echo form_close();

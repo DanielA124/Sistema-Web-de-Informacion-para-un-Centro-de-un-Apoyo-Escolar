@@ -59,6 +59,9 @@
                         <?php echo form_open_multipart('mensualidad/index'); ?>
                             <button type="submit" class="btn btn-light btn-block btn-sm">Mensualidad</button>
                         <?php echo form_close(); ?>
+                        <?php echo form_open_multipart('detalle/index'); ?>
+                            <button type="submit" class="btn btn-light btn-block btn-sm">Detalles</button>
+                        <?php echo form_close(); ?>
                     </div>
 
                 </div>
