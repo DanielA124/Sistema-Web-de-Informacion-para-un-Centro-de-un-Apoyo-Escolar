@@ -21,10 +21,9 @@
           ?>
             <tr>
                 <td><?php echo $row->nombreUsuario; ?></td>
-                <td><?php echo $row->fecha; ?></td>
+                <td><?php echo formatearFecha($row->fecha); ?></td>
                 <td><?php echo $row->total; ?></td>
-                <td><?php echo $row->mes; ?>/
-                   <?php echo $row->anio; ?> </td>
+                <td><?php echo $row->mes; ?>/<?php echo $row->anio; ?> </td>
                 <td><?php echo $row->monto; ?></td>
                 <td><?php echo $row->nombres; ?> 
                     <?php echo $row->apellidoPaterno; ?> 
@@ -34,6 +33,13 @@
                   <button type="submit" class="btn btn-danger" text-align="text-center"><i class="fas fa-times"></i></button>
                   <?php echo form_close(); ?>
                 </td>
+                <td>
+                <?php echo form_open_multipart('detalle/reportepdf');?>
+                                            <input type="hidden" name="idPago" value="<?php echo $row->idPago;?>">
+                                            <button class="btn btn-warning" data-toggle="tooltip"  data-placement="top" title="Editar">
+                                            <i class="fa fa-user"></i>
+                                            </button>
+                                            <?php echo form_close();?></td>
             </tr>
           <?php
           $indice++;       
@@ -49,7 +55,7 @@
                 <?php 
                 echo form_open_multipart('detalle/agregar');
                 ?>
-                <button type="submit" class="btn btn-primary btn-block">Agregar Datos del Usuario</button>
+                <button type="submit" class="btn btn-primary btn-block">Agregar Datos de Pago Completo</button>
                 <?php 
                 echo form_close();
                 ?>  

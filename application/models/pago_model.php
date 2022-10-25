@@ -8,6 +8,7 @@ class Pago_model extends CI_Model {
 	{
         $this->db->select('*'); //select *
         $this->db->from('pago'); //tabla
+        $this->db->where('estado','1'); //tabla
         return $this->db->get(); //devolucion del resultado de la consulta
 	}
 

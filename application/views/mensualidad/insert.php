@@ -23,7 +23,7 @@
                 <option>Octubre</option>
                 <option>Noviembre</option>
                 <option>Diciembre</option>
-                </select><br>   
+                </select><br>
             </div>
         </div>
         <div class="row">

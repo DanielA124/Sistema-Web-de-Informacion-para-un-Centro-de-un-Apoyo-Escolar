@@ -19,7 +19,7 @@
           ?>
             <tr>
                 <th scope="row"><?php echo $row->idPago; ?></th>
-                <td><?php echo $row->fecha; ?></td>
+                <td><?php echo formatearFecha($row->fecha); ?></td>
                 <td><?php echo $row->total; ?></td>
                 <td><?php echo $this->session->userdata('nombreUsuario') ?></td>
                 <td align="center">                  

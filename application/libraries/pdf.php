@@ -7,7 +7,6 @@
             //$this->Image('ruta de la imagen',x,y,ancho,alto);
             $this->SetFont('Arial','B',10);
             $this->Cell(30);
-            $this->Cell(120,10,'TITULO CABECERA',0,0,'C');
             $this->Ln('5');
        }
 

@@ -15,7 +15,7 @@
                 <label>Total:</label>
             </div>
             <div class="col-md-9">
-                <input type="double" name="total" placeholder="" class="form-control" required value="total"><br>     
+                <input type="double" name="total" placeholder="" class="form-control" required value="<?php echo $row->total; ?>"><br>     
             </div>
         </div>
         

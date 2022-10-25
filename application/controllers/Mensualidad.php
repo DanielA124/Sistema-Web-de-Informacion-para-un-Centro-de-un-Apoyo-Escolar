@@ -58,7 +58,7 @@ class Mensualidad extends CI_Controller {
 
         public function agregarbd()
 	{
-        $data['mes']=mb_strtoupper($_POST['mes'], 'UTF-8');
+        $data['mes']=$_POST['mes'];
         $data['anio']=$_POST['anio'];
         $data['monto']=$_POST['monto'];
         $data['idInscripcion']=$_POST['idInscripcion'];

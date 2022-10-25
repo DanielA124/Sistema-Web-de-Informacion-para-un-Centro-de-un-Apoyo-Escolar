@@ -3,43 +3,139 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Detalle_model extends CI_Model {
 
+    public function listaDetalle() //select
+   {
+      $this->db->select('*'); //select*
+      $this->db->from('detallepago'); //tabla]
+      $this->db->join('pago', 'detallepago.idPago = pago.idPago');
+      $this->db->join('usuario', 'pago.idUsuario = usuario.idUsuario');
+      $this->db->join('mensualidad', 'detallepago.idMensualidad = mensualidad.idMensualidad');
+      $this->db->join('inscripcion', 'mensualidad.idInscripcion = inscripcion.idInscripcion');
+      $this->db->join('estudiante', 'inscripcion.idEstudiante = estudiante.idEstudiante');
+      $this->db->where('pago.estado', '1');
 
-	public function listaDetalle()
-	{
-        $this->db->select('detallepago.idPago, usuario.nombreUsuario, pago.fecha, pago.total, 
-                          detallepago.idMensualidad, mensualidad.mes, mensualidad.anio, mensualidad.monto,
-                          estudiante.nombres, estudiante.apellidoPaterno, estudiante.apellidoMaterno, detallepago.estado '); //select *
-        $this->db->from('detallepago'); //tabla]
-        $this->db->join('pago', 'detallepago.idPago = pago.idPago');
-        $this->db->join('usuario', 'pago.idUsuario = usuario.idUsuario');
-        $this->db->join('mensualidad', 'detallepago.idMensualidad = mensualidad.idMensualidad');
-        $this->db->join('inscripcion', 'mensualidad.idInscripcion = inscripcion.idInscripcion');
-        $this->db->join('estudiante', 'inscripcion.idEstudiante = estudiante.idEstudiante');
-        $this->db->where('detallepago.estado','1');
 
-        return $this->db->get(); //devolucion del resultado de la consulta
-	}
+      return $this->db->get(); //devolucion del resultado de la consulta
+   }
 
-    public function agregarDetalle($data)
-    {
-        $this->db->insert('detallepago',$data); //tabla
-        return $this->db->insert_id();
-    }
+   public function registrar($data)
+   {
 
-    public function recuperarPago($idPago, $idMensualidad)
-    {
-        $this->db->select('*'); //select *
-        $this->db->from('detallepago'); //tabla
-        $this->db->where('idPago',$idPago);
-        $this->db->where('idMensualidad',$idMensualidad);
-        return $this->db->get(); //devolucion del resultado de la consulta
-    }
+      //Iniciamos la transacción.    
+      $this->db->trans_begin();
+      
+      //Intenta insertar un pago.    
+      $this->db->insert('pago', array(
+         'total' => $data['total'],
+         'fecha' => date("Y-m-d"),
+         'idUsuario' =>  $_SESSION['idusuario'],
+         'estado' => 1
+      ));
+      //Recuperamos el id del cliente registrado.    
+      $pago_id = $this->db->insert_id();
 
-    public function modificarPago($idPago,$idMensualidad,$data)
-    {
-        $this->db->where('idPago',$idPago);
-        $this->db->where('îdMensualidad',$idPago);
-        $this->db->update('detallepago',$data);
-    }
+      //Insertamos los servicios que desea adquirir del Inscrito.     
 
+         $idInscripcion = $data['idInscripcion'];
+         $mes = $data['mes'];
+         $anio = $data['anio'];
+         $monto = $data['monto'];
+        $countM = 0;
+        $IdMArray=array();
+       while ($countM < count($idInscripcion)) {
+         $this->db->insert('mensualidad', array(
+            'idInscripcion' => $idInscripcion[$countM],
+            'mes' => $mes[$countM],
+            'anio' => $anio[$countM],
+            'monto' => $monto[$countM]
+         ));
+
+         array_push($IdMArray, $this->db->insert_id());
+         $countM ++;
+       }
+
+      //Insertamos los Datos del Pago y de la Mensualidad     
+       foreach ($IdMArray as $mes) {
+          $this->db->insert('detallepago', array(
+            'idPago' => $pago_id,
+            'idMensualidad' => $mes,
+         ));
+       }
+
+      if ($this->db->trans_status() === FALSE) {
+         //Hubo errores en la consulta, entonces se cancela la transacción.   
+         $this->db->trans_rollback();
+         return false;
+      } else {
+         //Todas las consultas se hicieron correctamente.  
+         $this->db->trans_commit();
+         $pago_id;
+         return true;
+      }
+   }
+
+   public function actualizar($idPago,$data)
+   {
+      $this->db->where('idPago', $idPago);
+      $this->db->update('pago',  array(
+         'idUsuario' => $_SESSION['idusuario'],
+         'estado' => $data['estado'],
+      ));
+
+   }
+
+
+   public function recuperarVenta($pago) //get
+   {
+      $this->db->select('*'); //select *
+      $this->db->from('pago'); //tabla productos
+      $this->db->where('pago.idPago', $pago); //condición where estado = 1
+      
+    $this->db->join('pago', 'detallepago.idPago = pago.idPago');
+    $this->db->join('usuario', 'pago.idUsuario = usuario.idUsuario');
+    $this->db->join('mensualidad', 'detallepago.idMensualidad = mensualidad.idMensualidad');
+    $this->db->join('inscripcion', 'mensualidad.idInscripcion = inscripcion.idInscripcion');
+    $this->db->join('estudiante', 'inscripcion.idEstudiante = estudiante.idEstudiante');
+     $this->db->where('pago.estado', '0');
+
+      return $this->db->get(); //devolucion del resultado de la consulta
+
+   }
+
+   public function detalle($idPago) //get
+   {
+      $this->db->select('apoderado.nombres, apoderado.apellidoPaterno, apoderado.apellidoMaterno, apoderado.numReferencia, 
+                        estudiante.nombres, estudiante.apellidoPaterno, estudiante.apellidoMaterno, inscripcion.horario,
+                        mensualidad.mes, mensualidad.anio, mensualidad.monto, pago.total, pago.fecha, usuario.nombreUsuario'); //select *
+      $this->db->from('pago'); //tabla productos    
+      $this->db->join('usuario', 'pago.idUsuario = usuario.idUsuario');   
+      $this->db->join('detallepago', 'pago.idPago = detallepago.idPago');
+      $this->db->join('mensualidad', 'detallepago.idMensualidad = mensualidad.idMensualidad');
+      $this->db->join('inscripcion', 'mensualidad.idInscripcion = inscripcion.idInscripcion');
+      $this->db->join('estudiante', 'inscripcion.idEstudiante = estudiante.idEstudiante');
+      $this->db->join('apoderado', 'inscripcion.idApoderado = apoderado.idApoderado');
+      $this->db->where('pago.estado', '1');
+      $this->db->where('pago.idPago', $idPago);
+
+      return $this->db->get(); //devolucion del resultado de la consulta
+
+   }
+
+   public function detallelista($idPago) //get
+   {
+      $this->db->select('*'); //select *
+      $this->db->from('pago'); //tabla productos    
+      $this->db->join('detallepago', 'pago.idPago = detallepago.idPago');
+      $this->db->join('mensualidad', 'detallepago.idMensualidad = mensualidad.idMensualidad');
+      $this->db->join('inscripcion', 'mensualidad.idInscripcion = inscripcion.idInscripcion');
+      $this->db->join('estudiante', 'inscripcion.idEstudiante = estudiante.idEstudiante');
+      $this->db->join('apoderado', 'inscripcion.idApoderado = apoderado.idApoderado');
+      $this->db->where('pago.estado', '1');
+      $this->db->where('pago.idPago', $idPago);
+
+      return $this->db->get(); //devolucion del resultado de la consulta
+
+   }
+   
+   
 }

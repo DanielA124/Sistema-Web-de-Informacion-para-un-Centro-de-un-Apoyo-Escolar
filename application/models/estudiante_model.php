@@ -41,4 +41,30 @@ class Estudiante_model extends CI_Model {
         return $this->db->get(); //devolucion del resultado de la consulta
     }
 
+    function getEstudiante($postData){
+        // $postData['search'] = 7;
+        $response2 = array();
+        if(isset($postData['search']) ){
+          // Select record
+          $this->db->select('*');//Todo
+          $this->db->from('inscripcion'); //tabla que usaras de ejemplo
+          $this->db->join('estudiante', 'inscripcion.idEstudiante=estudiante.idEstudiante');
+          $this->db->where("estudiante.nombres like '%".$postData['search']."%' "); //id que capturaras
+          $this->db->where('inscripcion.estado','1'); //condición where estado = 1
+        
+          $records = $this->db->get()->result();
+   
+          foreach($records as $row ){
+             $response2[] = array(
+                "value"=>$row->nombres, 
+                "idInscripcion"=>$row->idInscripcion, 
+                "apellidoPaterno"=>$row->apellidoPaterno,
+                "apellidoMaterno"=>$row->apellidoMaterno
+            );
+            }
+   
+        }
+        return $response2;
+    }
+
 }
