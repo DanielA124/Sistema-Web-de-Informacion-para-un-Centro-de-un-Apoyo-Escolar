@@ -99,7 +99,7 @@ class Detalle extends CI_Controller {
             $actividad = $this->detalle_model->detalle($_POST['idPago']);
             $actividad = $actividad->result();
             foreach ($actividad as $rowa) {
-                $act = $rowa->nombres.' '.$rowa->apellidoPaterno;
+                $act = $rowa->PNombre.' '.$rowa->PPaterno.' '.$rowa->PMaterno;
             }
             $this->pdf->Cell(50, 7, utf8_decode('Cliente:'), 0, 0, 'L', 0);
             $this->pdf->SetFont('Arial', '', 11);
@@ -109,19 +109,19 @@ class Detalle extends CI_Controller {
             $actividad = $this->detalle_model->detalle($_POST['idPago']);
             $actividad = $actividad->result();
             foreach ($actividad as $rows) {
-                $ci =($rows->colegio);
+                $num =($rows->numReferencia);
             }
             $this->pdf->SetFont('Arial', 'B', 11);
-            $this->pdf->Cell(50, 7, utf8_decode('C.I.:'), 0, 0, 'L', 0);
+            $this->pdf->Cell(50, 7, utf8_decode('Celular:'), 0, 0, 'L', 0);
             $this->pdf->SetFont('Arial', '', 11);
-            $this->pdf->Cell(160, 7, utf8_decode($ci), 0, 1, 'L', 0);
+            $this->pdf->Cell(160, 7, utf8_decode($num), 0, 1, 'L', 0);
 
 
             $this->pdf->Ln(0);
              $actividad = $this->detalle_model->detalle($_POST['idPago']);
             $actividad = $actividad->result();
             foreach ($actividad as $rows) {
-                $usuario =$rows->apellidoMaterno;
+                $usuario =$rows->nombreUsuario;
             }
             $this->pdf->SetFont('Arial', 'B', 11);
             $this->pdf->Cell(50, 7, utf8_decode('Usuario asignado:'), 0, 0, 'L', 0);
@@ -132,22 +132,22 @@ class Detalle extends CI_Controller {
              $actividad = $this->detalle_model->detalle($_POST['idPago']);
             $actividad = $actividad->result();
             foreach ($actividad as $rows) {
-                $nombreSucursal =$rows->edad;
+                $turno =$rows->horario;
             }
             $this->pdf->SetFont('Arial', 'B', 11);
-            $this->pdf->Cell(50, 7, utf8_decode('Sucursal:'), 0, 0, 'L', 0);
+            $this->pdf->Cell(50, 7, utf8_decode('Horario Elegido:'), 0, 0, 'L', 0);
             $this->pdf->SetFont('Arial', '', 11);
-            $this->pdf->Cell(160, 7, utf8_decode($nombreSucursal), 0, 1, 'L', 0);
+            $this->pdf->Cell(160, 7, utf8_decode($turno), 0, 1, 'L', 0);
             
 
             $this->pdf->Ln(0);
             $actividad = $this->detalle_model->detalle($_POST['idPago']);
             $actividad = $actividad->result();
             foreach ($actividad as $rows) {
-                $fechaRegistro =formatearFecha($rows->fechaReg);
+                $fechaRegistro =formatearFecha($rows->fecha);
             }
             $this->pdf->SetFont('Arial', 'B', 11);
-            $this->pdf->Cell(50, 7, utf8_decode('fecha y hora de registro:'), 0, 0, 'L', 0);
+            $this->pdf->Cell(50, 7, utf8_decode('Fecha Registro:'), 0, 0, 'L', 0);
             $this->pdf->SetFont('Arial', '', 11);
             $this->pdf->Cell(160, 7, utf8_decode($fechaRegistro), 0, 1, 'L', 0);
 
@@ -156,34 +156,34 @@ class Detalle extends CI_Controller {
 
             $this->pdf->SetFont('Arial', 'B', 11);
             $this->pdf->Cell(10, 8, 'Nro.', 'LTRB', 0, 'C', 0);
-            $this->pdf->Cell(55, 8, utf8_decode('Venta'), 1, 0, 'C', 0);
-            $this->pdf->Cell(15, 8, utf8_decode('P/U'), 1, 0, 'C', 0);
-            $this->pdf->Cell(20, 8, utf8_decode('Cantidad'), 1, 0, 'C', 0);
-            $this->pdf->Cell(17, 8, utf8_decode('Total Bs'), 1, 1, 'C', 0);
+            $this->pdf->Cell(55, 8, utf8_decode('Estudiante'), 1, 0, 'C', 0);
+            $this->pdf->Cell(15, 8, utf8_decode('Mes'), 1, 0, 'C', 0);
+            $this->pdf->Cell(20, 8, utf8_decode('Año'), 1, 0, 'C', 0);
+            $this->pdf->Cell(17, 8, utf8_decode('Monto'), 1, 1, 'C', 0);
 
 
             $num = 1;
             foreach ($req as $row) {
 
-                $descripcion = $row->mes;
-                $precio = $row->anio;
-                $cantidad = $row->monto;
-                $total = $row->total;
+                $estudiante = $row->ENombre.' '.$row->EPaterno.' '.$row->EMaterno;
+                $mes = $row->mes;
+                $anio = $row->anio;
+                $monto = $row->monto;
 
                 $this->pdf->SetFont('Arial', '', 10);
                 $this->pdf->Cell(10, 5, $num, 1, 0, 'C', 0);
-                $this->pdf->Cell(55, 5, utf8_decode($descripcion), 1, 0, 'L', false);
-                $this->pdf->Cell(15, 5, utf8_decode($precio), 1, 0, 'C', false);
-                $this->pdf->Cell(20, 5, utf8_decode($cantidad), 1, 0, 'C', false);
-                $this->pdf->Cell(17, 5, utf8_decode($total), 1, 0, 'C', false);
+                $this->pdf->Cell(55, 5, utf8_decode($estudiante), 1, 0, 'L', false);
+                $this->pdf->Cell(15, 5, utf8_decode($mes), 1, 0, 'C', false);
+                $this->pdf->Cell(20, 5, utf8_decode($anio), 1, 0, 'C', false);
+                $this->pdf->Cell(17, 5, utf8_decode($monto), 1, 0, 'C', false);
 
                 $this->pdf->Ln();
 
                 $num++;
             }
-            $total1 = $row->total;
+            $totalLiteral = $row->total;
             $this->pdf->Ln(5);
-            $this->pdf->MultiCell(0, 5, utf8_decode(convertir($total1)), 0, 'J', 0);
+            $this->pdf->MultiCell(0, 5, utf8_decode(convertir($totalLiteral)), 0, 'J', 0);
             $this->pdf->Ln(5);
             $this->pdf->MultiCell(0, 5, utf8_decode('El presente es un comprobante de la compra realizada por el cliente.'), 0, 'J', 0);
 
@@ -192,7 +192,7 @@ class Detalle extends CI_Controller {
             $this->pdf->SetFont('Arial','',11);
             $this->pdf->Cell(160,7,utf8_decode(date("d/m/Y")),0,1,'L',0);
 
-            $this->pdf->Output("DetalleRequerimiento.pdf", "I");
+            $this->pdf->Output("FacturaPago.pdf", "I");
     }
 
     

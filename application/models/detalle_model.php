@@ -104,8 +104,8 @@ class Detalle_model extends CI_Model {
 
    public function detalle($idPago) //get
    {
-      $this->db->select('apoderado.nombres, apoderado.apellidoPaterno, apoderado.apellidoMaterno, apoderado.numReferencia, 
-                        estudiante.nombres, estudiante.apellidoPaterno, estudiante.apellidoMaterno, inscripcion.horario,
+      $this->db->select('apoderado.nombres PNombre, apoderado.apellidoPaterno PPaterno, apoderado.apellidoMaterno PMaterno, apoderado.numReferencia, 
+                        estudiante.nombres ENombre, estudiante.apellidoPaterno EPaterno, estudiante.apellidoMaterno EMaterno, inscripcion.horario,
                         mensualidad.mes, mensualidad.anio, mensualidad.monto, pago.total, pago.fecha, usuario.nombreUsuario'); //select *
       $this->db->from('pago'); //tabla productos    
       $this->db->join('usuario', 'pago.idUsuario = usuario.idUsuario');   
