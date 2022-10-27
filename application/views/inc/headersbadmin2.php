@@ -21,6 +21,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <!-- Custom styles for this template-->
     <link href="<?php echo base_url(); ?>sbadmin2/css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- Chart -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 
 </head>
 

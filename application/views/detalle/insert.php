@@ -137,7 +137,7 @@
                         {
                         ?>
                             <input type="hidden" name="idPago" value="<?php echo $rowPago->Pago+$lastID;?>">
-                            <button type="submit" class="btn btn-success"><i class="fas fa-file-pdf"></i> Factura</button>
+                            <button type="submit" class="btn btn-success" formtarget="_blank"><i class="fas fa-file-pdf"></i> Factura</button>
                         <?php
                         }
                         ?>

@@ -44,9 +44,6 @@
     <!-- Custom scripts for all pages-->
     <script src="<?php echo base_url(); ?>sbadmin2/js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="<?php echo base_url(); ?>sbadmin2/vendor/chart.js/Chart.min.js"></script>
-
     <script>
   $(function () {
    $('#dataTable').DataTable({      

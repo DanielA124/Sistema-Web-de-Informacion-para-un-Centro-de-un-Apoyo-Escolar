@@ -36,7 +36,7 @@
                 <td>
                 <?php echo form_open_multipart('detalle/reportepdf');?>
                                             <input type="hidden" name="idPago" value="<?php echo $row->idPago;?>">
-                                            <button class="btn btn-warning" data-toggle="tooltip"  data-placement="top" title="Editar">
+                                            <button class="btn btn-warning" data-toggle="tooltip"  data-placement="top" title="Editar" formtarget="_blank">
                                             <i class="fa fa-user"></i>
                                             </button>
                                             <?php echo form_close();?></td>

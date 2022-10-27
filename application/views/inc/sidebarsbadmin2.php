@@ -13,10 +13,30 @@
             <hr class="sidebar-divider">
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interfaz
+                Dashboard
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReportes"
+                    aria-expanded="true" aria-controls="collapseReportes">
+                    <i class="fas fa-fw fa-chart-line"></i>
+                    <span>Inicio</span>
+                </a>
+                <div id="collapseReportes" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Ver:</h6>
+                        <?php echo form_open_multipart('dashboard/index'); ?>
+                            <button type="submit" class="btn btn-light btn-block btn-sm">Reportes</button>
+                        <?php echo form_close(); ?>
+                    </div>
+                </div>
+            </li>
+
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading">
+                Interfaz
+            </div>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
@@ -38,6 +58,7 @@
                     </div>
                 </div>
             </li>
+            
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
