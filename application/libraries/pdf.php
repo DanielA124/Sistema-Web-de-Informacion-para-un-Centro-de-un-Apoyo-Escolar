@@ -8,6 +8,8 @@
             $this->SetFont('Arial','B',10);
             $this->Cell(30);
             $this->Ln('5');
+            $ruta=base_url("img/CruzdelSur.png");
+            $this->Image($ruta,30,60,90,90);
        }
 
 	   public function Footer(){

@@ -31,8 +31,8 @@ $("#btnBuscar").click(function(){
       var obj= JSON.parse(data);
 
       $.each(obj, function(i,item){
-        paraMes.push(item.Mes);
-        paraNumero.push(item.Num);
+        paraMes.push(item.Monto);
+        paraNumero.push(item.Sum);
       });
 
       //var paraColor = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
@@ -44,7 +44,7 @@ $("#btnBuscar").click(function(){
               data: {
                   labels: paraMes, //paraColor,
                   datasets: [{
-                      label: paraMes,
+                      label: 'Hola',
                       data: paraNumero, //paraNum ,
                       backgroundColor: [
                           'rgba(255, 99, 132, 0.2)',

@@ -10,6 +10,9 @@ class Detalle extends CI_Controller {
             $lista = $this->detalle_model->listaDetalle();
             $data['detallepago'] = $lista;
 
+            $total = $this->detalle_model->totalPago();
+            $data['pago'] = $total;
+
             $this->load->view('inc/headersbadmin2');
             $this->load->view('inc/sidebarsbadmin2');
             $this->load->view('inc/topbarsbadmin2');
@@ -32,6 +35,22 @@ class Detalle extends CI_Controller {
         $this->load->view('inc/sidebarsbadmin2');
         $this->load->view('inc/topbarsbadmin2');
         $this->load->view('detalle/insert');
+        $this->load->view('inc/creditossbadmin2');
+        $this->load->view('inc/footersbadmin2');
+    }
+
+    public function buscarId()
+    {
+        $idPago=$_POST['idPago'];
+        $data['detallepago']=$this->detalle_model->listaDetalle2($idPago);
+
+        $total = $this->detalle_model->totalPago();
+        $data['pago'] = $total;
+
+        $this->load->view('inc/headersbadmin2');
+        $this->load->view('inc/sidebarsbadmin2');
+        $this->load->view('inc/topbarsbadmin2');
+        $this->load->view('detalle/lista',$data);
         $this->load->view('inc/creditossbadmin2');
         $this->load->view('inc/footersbadmin2');
     }

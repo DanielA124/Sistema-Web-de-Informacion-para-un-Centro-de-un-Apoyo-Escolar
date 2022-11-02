@@ -27,7 +27,16 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Ver:</h6>
                         <?php echo form_open_multipart('dashboard/index'); ?>
-                            <button type="submit" class="btn btn-light btn-block btn-sm">Reportes</button>
+                            <button type="submit" class="btn btn-light btn-block btn-sm">Graficos</button>
+                        <?php echo form_close(); ?>
+                        <?php echo form_open_multipart('dashboard/general'); ?>
+                            <button type="submit" class="btn btn-light btn-block btn-sm">General</button>
+                        <?php echo form_close(); ?>
+                        <?php echo form_open_multipart('dashboard/reportID'); ?>
+                            <button type="submit" class="btn btn-light btn-block btn-sm">ID</button>
+                        <?php echo form_close(); ?>
+                        <?php echo form_open_multipart('dashboard/deuda'); ?>
+                            <button type="submit" class="btn btn-light btn-block btn-sm">No Pagado</button>
                         <?php echo form_close(); ?>
                     </div>
                 </div>
@@ -74,17 +83,10 @@
                         <?php echo form_open_multipart('inscripcion/index'); ?>
                             <button type="submit" class="btn btn-light btn-block btn-sm">Inscritos</button>
                         <?php echo form_close(); ?>
-                        <?php echo form_open_multipart('pago/index'); ?>
-                            <button type="submit" class="btn btn-light btn-block btn-sm">Pagos</button>
-                        <?php echo form_close(); ?>
-                        <?php echo form_open_multipart('mensualidad/index'); ?>
-                            <button type="submit" class="btn btn-light btn-block btn-sm">Mensualidad</button>
-                        <?php echo form_close(); ?>
-                        <?php echo form_open_multipart('detalle/index'); ?>
-                            <button type="submit" class="btn btn-light btn-block btn-sm">Detalles</button>
+                        <?php echo form_open_multipart('pagoMes/index'); ?>
+                            <button type="submit" class="btn btn-light btn-block btn-sm">Pago</button>
                         <?php echo form_close(); ?>
                     </div>
-
                 </div>
             </li>
 
