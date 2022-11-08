@@ -5,7 +5,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Todos los derechos reservados &copy; Your Website 2021</span>
+                        <span>Todos los derechos reservados &copy; Cruz del Sur 2022</span>
                     </div>
                 </div>
             </footer>

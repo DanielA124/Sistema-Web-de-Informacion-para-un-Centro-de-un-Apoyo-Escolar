@@ -26,7 +26,15 @@
                     <?php echo $row->apellidoMaterno; ?> 
                     <?php echo $row->nombres; ?></td>
                 <td><?php echo $row->edad; ?></td>
-                <td><?php echo $row->sexo; ?></td>
+                <td>
+                  <?php 
+                  if ($row->sexo == 'H'){
+                      echo "HOMBRE";
+                  }
+                  else{
+                      echo "MUJER";
+                  };?>
+                </td>
                 <td><?php echo $row->colegio; ?></td>
                 <td><?php echo $row->grado; ?></td>
 

@@ -1,7 +1,18 @@
 <div class="container" >
     <div class="row">
         <div class="col-md-12">
-         <?php 
+        <div class="row">
+            <div class="col-md-2">
+                <?php 
+                echo form_open_multipart('pagoMes/index');
+                ?>
+                <button type="submit" class="btn btn-dark btn-block"><i class="fa fa-chevron-left"></i>  Volver</button>
+                <?php 
+                echo form_close();
+                ?>  
+            </div>
+        </div><br>
+         <?php
             echo form_open_multipart('pagoMes/agregarbd');
         ?>
                 <h2>Datos del Estudiante</h2>
@@ -10,7 +21,7 @@
                     <label>Nombres:</label>
                 </div>
                 <div class="col-md-3">
-                    <input type="search" id="nombres" class="form-control"></input>
+                    <input type="search" id="nombres" class="form-control" required></input>
                     <input class="form-control" name="idInscripcion" id="idInscripcion" type="hidden" value=""><br>
                 </div>
             </div>
@@ -51,7 +62,7 @@
                     <label>Pagado:</label>
                 </div>
                 <div class="col-md-3">
-                    <input name="pagado" class="form-control" placeholder="" value="" required></input><br>
+                    <input type="number" step="0.1" name="pagado" class="form-control" placeholder="" value="" required min="0" max="300" autocomplete="off"></input><br>
                 </div>
             </div>
             <div class="row">

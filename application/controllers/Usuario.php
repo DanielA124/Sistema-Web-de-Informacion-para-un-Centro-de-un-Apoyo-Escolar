@@ -93,8 +93,6 @@ class Usuario extends CI_Controller {
         $data['direccion']=mb_strtoupper($_POST['direccion'], 'UTF-8');
         $data['horario']=mb_strtoupper($_POST['horario'], 'UTF-8');
         $data['numeroCel']=$_POST['numeroCel'];
-        $data['nombreUsuario']=$_POST['nombreUsuario'];
-        $data['password']=md5($_POST['password']);
         $data['fechaAct']=date("Y-m-d (H:i:s)");
         
         $this->usuario_model->modificardatos($idUsuario,$data);

@@ -48,9 +48,9 @@
                   
                 <?php echo form_close();?></td>
                 <td align="center">
-                <?php echo form_open_multipart('pagoMes/reportepdf');?>
+                <?php echo form_open_multipart('pagoMes/reportepdfCopia');?>
                   <input type="hidden" name="idPagoMen" value="<?php echo $row->idPagoMen;?>">
-                  <button class="btn btn-dark" data-toggle="tooltip"  data-placement="top" title="Editar" formtarget="_blank">
+                  <button class="btn btn-dark" data-toggle="tooltip"  data-placement="top" title="Fáctura" formtarget="_blank">
                   <i class="fa fa-file-pdf"></i>
                   </button>
                 <?php echo form_close();?></td>

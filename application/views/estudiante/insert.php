@@ -1,7 +1,18 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-
+        <div class="row">
+            <div class="col-md-2">
+                <?php 
+                echo form_open_multipart('estudiante/index');
+                ?>
+                <button type="submit" class="btn btn-dark btn-block"><i class="fa fa-chevron-left"></i>  Volver</button>
+                <?php 
+                echo form_close();
+                ?>  
+            </div>
+        </div><br>
+        <h2>Insertar</h2>
         <?php 
         echo form_open_multipart('estudiante/agregarbd');
         ?>
@@ -10,7 +21,7 @@
                 <label>Nombres:</label>
             </div>
             <div class="col-md-9">
-                <input type="text" name="nombres" placeholder="" class="form-control" required><br>     
+                <input type="text" name="nombres" placeholder="" class="form-control" required autocomplete="off"><br>     
             </div>
         </div>
         <div class="row">
@@ -18,7 +29,7 @@
                 <label>Primer Apellido:</label>
             </div>
             <div class="col-md-9">
-                <input type="text" name="apellidoPaterno" placeholder="" class="form-control" required><br>    
+                <input type="text" name="apellidoPaterno" placeholder="" class="form-control" required autocomplete="off"><br>    
             </div>
         </div>
         <div class="row">
@@ -26,7 +37,7 @@
                 <label>Segundo Apellido:</label>
             </div>
             <div class="col-md-9">
-                <input type="text" name="apellidoMaterno" placeholder="" class="form-control"><br>     
+                <input type="text" name="apellidoMaterno" placeholder="" class="form-control" autocomplete="off"><br>     
             </div>
         </div>
         <div class="row">
@@ -34,7 +45,7 @@
                 <label>Edad:</label>
             </div>
             <div class="col-md-1">
-                <input type="number" id="tentacles" value="5" min="5" max="14" name="edad" class="form-control" required><br>     
+                <input type="number" id="tentacles" value="5" min="5" max="14" name="edad" class="form-control" required autocomplete="off"><br>     
             </div>
         </div>
         <div class="row">
@@ -42,7 +53,7 @@
                 <label>Sexo:</label>
             </div>
         <div class="col-md-1">
-            <select class="form-select form-control" aria-label="Default select example" required name="sexo">
+            <select class="form-select form-control" aria-label="Default select example" required name="sexo" autocomplete="off">
                 <option>H</option>
                 <option>M</option>
             </select><br>    
@@ -53,7 +64,7 @@
                 <label>Colegio:</label>
             </div>
             <div class="col-md-9">
-                <input type="text" name="colegio" placeholder="" class="form-control" required><br>     
+                <input type="text" name="colegio" placeholder="" class="form-control" required autocomplete="off"><br>     
             </div>
         </div>
         <div class="row">

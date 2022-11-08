@@ -64,7 +64,7 @@ class Plantilla extends CI_Controller {
         $idPlantilla=$_POST['idPlantilla'];
         $data['nombre']=mb_strtoupper($_POST['nombre'], 'UTF-8');
         $data['idMateria']=$_POST['idMateria'];
-        $data['idUsuario']=$this->session->userdata('idUsuario');
+        $data['idUsuario']=$this->session->userdata('idusuario');
         $data['fechaAct']=date("Y-m-d (H:i:s)");
         $this->plantilla_model->modificardatos($idPlantilla,$data);
         redirect('plantilla/index','refresh');

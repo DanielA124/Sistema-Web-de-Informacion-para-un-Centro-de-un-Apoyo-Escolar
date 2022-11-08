@@ -1,7 +1,18 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-
+        <div class="row">
+            <div class="col-md-2">
+                <?php 
+                echo form_open_multipart('plantilla/index');
+                ?>
+                <button type="submit" class="btn btn-dark btn-block"><i class="fa fa-chevron-left"></i>  Volver</button>
+                <?php 
+                echo form_close();
+                ?>  
+            </div>
+        </div><br>
+        <h2>Insertar</h2>
         <?php 
         echo form_open_multipart('plantilla/agregarbd');
         ?>
@@ -10,7 +21,7 @@
                 <label>Nombre:</label>
             </div>
             <div class="col-md-9">
-                <input type="text" name="nombre" placeholder="" class="form-control" required><br>     
+                <input type="text" name="nombre" placeholder="" class="form-control" required autocomplete="off"><br>     
             </div>
         </div>
         <div class="row">

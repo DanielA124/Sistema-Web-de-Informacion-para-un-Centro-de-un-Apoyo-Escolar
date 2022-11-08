@@ -33,6 +33,7 @@ class PagosMes_model extends CI_Model {
     public function agregarPago($data)
     {
         $this->db->insert('pagoMensualidad',$data); //tabla
+
     }
 
     public function eliminarPago($idPagoMen)
@@ -65,6 +66,22 @@ class PagosMes_model extends CI_Model {
         $this->db->join('estudiante', 'inscripcion.idEstudiante = estudiante.idEstudiante');
         $this->db->from('pagoMensualidad'); //tabla
         $this->db->where('pagoMensualidad.estado','0');
+        return $this->db->get(); //devolucion del resultado de la consulta
+    }
+
+    public function reporteFactura($idPagoMen)
+    {
+        $this->db->select('idPagoMen, fecha, total, pagado, deuda, mes, anio, pagomensualidad.estado, 
+                            estudiante.nombres ENombre,estudiante.apellidoPaterno EPaterno ,estudiante.apellidoMaterno EMaterno, 
+                            apoderado.nombres PNombre, apoderado.apellidoPaterno PPaterno,apoderado.apellidoMaterno PMaterno, apoderado.numReferencia, inscripcion.horario, usuario.nombreUsuario'); //select *
+        $this->db->join('usuario', 'pagomensualidad.idUsuario = usuario.idUsuario');
+        $this->db->join('inscripcion', 'pagomensualidad.idInscripcion = inscripcion.idInscripcion');
+        $this->db->join('apoderado', 'inscripcion.idApoderado = apoderado.idApoderado');
+        $this->db->join('estudiante', 'inscripcion.idEstudiante = estudiante.idEstudiante');
+        $this->db->from('pagoMensualidad'); //tabla
+        $this->db->where('pagoMensualidad.idPagoMen', $idPagoMen);
+
+
         return $this->db->get(); //devolucion del resultado de la consulta
     }
 }

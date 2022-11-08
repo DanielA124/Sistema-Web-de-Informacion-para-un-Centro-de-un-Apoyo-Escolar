@@ -17,26 +17,22 @@ class Dashboard_model extends CI_Model {
 
       public function detalleGeneral() //select
    {
-      $this->db->select('pago.idPago,usuario.nombreUsuario,estudiante.nombres, estudiante.apellidoPaterno, estudiante.apellidoMaterno,
-                         mensualidad.mes, mensualidad.anio, pago.total,pago.fecha'); //select*
-      $this->db->from('detallepago'); //tabla]
-      $this->db->join('pago', 'detallepago.idPago = pago.idPago');
-      $this->db->join('usuario', 'pago.idUsuario = usuario.idUsuario');
-      $this->db->join('mensualidad', 'detallepago.idMensualidad = mensualidad.idMensualidad');
-      $this->db->join('inscripcion', 'mensualidad.idInscripcion = inscripcion.idInscripcion');
-      $this->db->join('estudiante', 'inscripcion.idEstudiante = estudiante.idEstudiante');
-      $this->db->where('pago.estado', '1');
-      $this->db->group_by('pago.idPago');
+        $this->db->select('idPagoMen, fecha, total, pagado, deuda, mes, anio, pagomensualidad.estado, 
+                            estudiante.nombres,estudiante.apellidoPaterno,estudiante.apellidoMaterno, 
+                            usuario.nombreUsuario'); //select *
+        $this->db->join('usuario', 'pagomensualidad.idUsuario = usuario.idUsuario');
+        $this->db->join('inscripcion', 'pagomensualidad.idInscripcion = inscripcion.idInscripcion');
+        $this->db->join('estudiante', 'inscripcion.idEstudiante = estudiante.idEstudiante');
+        $this->db->from('pagoMensualidad'); //tabla
 
-
-      return $this->db->get(); //devolucion del resultado de la consulta
+        return $this->db->get(); //devolucion del resultado de la consulta
    }
 
    public function totalGeneral() //select
    {
-      $this->db->select('SUM(total) Suma'); //select*
-      $this->db->from('pago'); //tabla]
-      $this->db->where('pago.estado', '1');
+      $this->db->select('SUM(pagado) Suma'); //select*
+      $this->db->from('pagoMensualidad'); //tabla]
+
 
 
       return $this->db->get(); //devolucion del resultado de la consulta
@@ -44,16 +40,16 @@ class Dashboard_model extends CI_Model {
 
    public function buscarID($idPago) //select
    {
-      $this->db->select('*'); //select*
-      $this->db->from('detallepago'); //tabla]
-      $this->db->join('pago', 'detallepago.idPago = pago.idPago');
-      $this->db->join('usuario', 'pago.idUsuario = usuario.idUsuario');
-      $this->db->join('mensualidad', 'detallepago.idMensualidad = mensualidad.idMensualidad');
-      $this->db->join('inscripcion', 'mensualidad.idInscripcion = inscripcion.idInscripcion');
+      
+      $this->db->select('idPagoMen, fecha, total, pagado, deuda, mes, anio, pagomensualidad.estado, 
+                          estudiante.nombres,estudiante.apellidoPaterno,estudiante.apellidoMaterno, 
+                          usuario.nombreUsuario'); //select *
+      $this->db->join('usuario', 'pagomensualidad.idUsuario = usuario.idUsuario');
+      $this->db->join('inscripcion', 'pagomensualidad.idInscripcion = inscripcion.idInscripcion');
       $this->db->join('estudiante', 'inscripcion.idEstudiante = estudiante.idEstudiante');
-      $this->db->where('pago.estado', '1');
-      $this->db->where('pago.idPago', $idPago);
-      $this->db->group_by('pago.idPago');
+      $this->db->from('pagoMensualidad'); //tabla
+      $this->db->where('pagoMensualidad.idPagoMen', $idPago);
+      $this->db->group_by('pagoMensualidad.idPagoMen');
 
 
       return $this->db->get(); //devolucion del resultado de la consulta
@@ -61,15 +57,15 @@ class Dashboard_model extends CI_Model {
 
    public function detalleDeuda() //select
    {
-      $this->db->select('*'); //select*
-      $this->db->from('detallepago'); //tabla]
-      $this->db->join('pago', 'detallepago.idPago = pago.idPago');
-      $this->db->join('usuario', 'pago.idUsuario = usuario.idUsuario');
-      $this->db->join('mensualidad', 'detallepago.idMensualidad = mensualidad.idMensualidad');
-      $this->db->join('inscripcion', 'mensualidad.idInscripcion = inscripcion.idInscripcion');
+      $this->db->select('idPagoMen, fecha, total, pagado, deuda, mes, anio, pagomensualidad.estado, 
+                            estudiante.nombres,estudiante.apellidoPaterno,estudiante.apellidoMaterno, 
+                            usuario.nombreUsuario'); //select *
+      $this->db->join('usuario', 'pagomensualidad.idUsuario = usuario.idUsuario');
+      $this->db->join('inscripcion', 'pagomensualidad.idInscripcion = inscripcion.idInscripcion');
       $this->db->join('estudiante', 'inscripcion.idEstudiante = estudiante.idEstudiante');
-      $this->db->where('pago.estado', '0');
-      $this->db->group_by('pago.idPago');
+      $this->db->from('pagoMensualidad'); //tabla
+      $this->db->where('pagoMensualidad.estado', '0');
+      $this->db->group_by('pagoMensualidad.idPagoMen');
 
 
       return $this->db->get(); //devolucion del resultado de la consulta
@@ -77,9 +73,9 @@ class Dashboard_model extends CI_Model {
 
    public function totalDeudas() //select
    {
-      $this->db->select('SUM(total) Suma'); //select*
-      $this->db->from('pago'); //tabla]
-      $this->db->where('pago.estado', '0');
+      $this->db->select('SUM(deuda) Suma'); //select*
+      $this->db->from('pagoMensualidad'); //tabla]
+      $this->db->where('pagoMensualidad.estado', '0');
 
 
       return $this->db->get(); //devolucion del resultado de la consulta

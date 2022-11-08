@@ -2,7 +2,17 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-
+        <div class="row">
+            <div class="col-md-2">
+                <?php 
+                echo form_open_multipart('estudiante/index');
+                ?>
+                <button type="submit" class="btn btn-dark btn-block"><i class="fa fa-chevron-left"></i>  Volver</button>
+                <?php 
+                echo form_close();
+                ?>  
+            </div>
+        </div><br>
         <h2>Modificar Datos</h2>
 
         <?php 
@@ -15,7 +25,7 @@
                 <label>Nombres:</label>
             </div>
             <div class="col-md-9">
-                <input type="text" name="nombres" placeholder="Ingrese el nombre" required value="<?php echo $row->nombres; ?>" class="form-control"><br>     
+                <input type="text" name="nombres" placeholder="Ingrese el nombre" required value="<?php echo $row->nombres; ?>" class="form-control" autocomplete="off"><br>     
             </div>
         </div>
         <div class="row">
@@ -23,7 +33,7 @@
                 <label>Apellido Paterno:</label>
             </div>
             <div class="col-md-9">
-                <input type="text" name="apellidoPaterno" placeholder="Ingrese Apellido Paterno" required value="<?php echo $row->apellidoPaterno; ?>" class="form-control"><br>     
+                <input type="text" name="apellidoPaterno" placeholder="Ingrese Apellido Paterno" required value="<?php echo $row->apellidoPaterno; ?>" class="form-control" autocomplete="off"><br>     
             </div>
         </div>
         <div class="row">
@@ -31,7 +41,7 @@
                 <label>Apellido Materno:</label>
             </div>
             <div class="col-md-9">
-                <input type="text" name="apellidoMaterno" placeholder="Ingrese el Apellido Materno" value="<?php echo $row->apellidoMaterno; ?>" class="form-control"><br>     
+                <input type="text" name="apellidoMaterno" placeholder="Ingrese el Apellido Materno" value="<?php echo $row->apellidoMaterno; ?>" class="form-control" autocomplete="off"><br>     
             </div>
         </div>
         <div class="row">
@@ -39,7 +49,7 @@
                 <label>Edad:</label>
             </div>
             <div class="col-md-1">
-                <input type="number" id="tentacles" min="5" max="14" name="edad" placeholder="" class="form-control" required value="<?php echo $row->edad; ?>"><br>     
+                <input type="number" id="tentacles" min="5" max="14" name="edad" placeholder="" class="form-control" required value="<?php echo $row->edad; ?>" autocomplete="off"><br>     
             </div>
         </div>
         <div class="row">
@@ -47,7 +57,7 @@
                 <label>Sexo:</label>
             </div>
         <div class="col-md-1">
-            <select class="form-control" required name="sexo" value="<?php echo $row->sexo; ?>">                   
+            <select class="form-control" required name="sexo" value="<?php echo $row->sexo; ?>" autocomplete="off">                   
                 <option>H</option>
                 <option>M</option>
             </select><br>     
@@ -58,7 +68,7 @@
                 <label>Colegio:</label>
             </div>
             <div class="col-md-9">
-                <input type="text" name="colegio" placeholder="Ingrese el colegio" required value="<?php echo $row->colegio; ?>" class="form-control"><br>
+                <input type="text" name="colegio" placeholder="Ingrese el colegio" required value="<?php echo $row->colegio; ?>" class="form-control" autocomplete="off"><br>
             </div>
         </div>
         <div class="row">

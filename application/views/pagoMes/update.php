@@ -2,7 +2,17 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-
+        <div class="row">
+            <div class="col-md-2">
+                <?php 
+                echo form_open_multipart('pagoMes/index');
+                ?>
+                <button type="submit" class="btn btn-dark btn-block"><i class="fa fa-chevron-left"></i>  Volver</button>
+                <?php 
+                echo form_close();
+                ?>  
+            </div>
+        </div><br>
         <h2>Actualizar Deuda</h2>
 
         <?php 
@@ -26,7 +36,7 @@
             <div class="col-md-2">
                 <input type="hidden" name="pagado" value="<?php echo $row->pagado; ?>">
                 <input type="hidden" name="total" value="<?php echo $row->total; ?>">
-                <input type="number" name="saldoPagado" step="0.1" placeholder="" class="form-control" required value="" min="0" max="<?php echo $row->deuda; ?>"><br>     
+                <input type="number" name="saldoPagado" step="0.1" placeholder="" class="form-control" required value="" min="0" max="<?php echo $row->deuda; ?>" autocomplete="off"><br>     
             </div>
         </div>
         

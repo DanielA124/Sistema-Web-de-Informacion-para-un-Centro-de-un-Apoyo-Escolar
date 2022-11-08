@@ -17,7 +17,7 @@
                             ?>
                             <div class="col-md-12 mb-3">
                                 <label class="form-label">Nombre de Usuario:</label>
-                                <input type="text" class="form-control" name="nombreUsuario" placeholder="Ingrese su Nombre de Usuario" required>
+                                <input type="text" class="form-control" name="nombreUsuario" placeholder="Ingrese su Nombre de Usuario" required autocomplete="off">
                             </div>
                             <div class="col-md-12 mb-3">
                                <label class="form-label">Password:</label><br>
@@ -32,10 +32,7 @@
                         <?php
                            echo form_close();
                         ?>
-                        <hr>
-                  <div class="text-center">
-                      <a class="small" href="register.html">Crear una Cuenta</a>
-                </div>
+                      <hr>
               </div>
             </div>
           </div>

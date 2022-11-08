@@ -26,9 +26,7 @@
                 <div id="collapseReportes" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Ver:</h6>
-                        <?php echo form_open_multipart('dashboard/index'); ?>
-                            <button type="submit" class="btn btn-light btn-block btn-sm">Graficos</button>
-                        <?php echo form_close(); ?>
+                        
                         <?php echo form_open_multipart('dashboard/general'); ?>
                             <button type="submit" class="btn btn-light btn-block btn-sm">General</button>
                         <?php echo form_close(); ?>
@@ -36,7 +34,7 @@
                             <button type="submit" class="btn btn-light btn-block btn-sm">ID</button>
                         <?php echo form_close(); ?>
                         <?php echo form_open_multipart('dashboard/deuda'); ?>
-                            <button type="submit" class="btn btn-light btn-block btn-sm">No Pagado</button>
+                            <button type="submit" class="btn btn-light btn-block btn-sm">Deudas</button>
                         <?php echo form_close(); ?>
                     </div>
                 </div>
