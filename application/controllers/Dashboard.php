@@ -151,10 +151,6 @@ class Dashboard extends CI_Controller {
         $this->pdf->Ln(25);
         $this->pdf->Cell(25,5,utf8_decode('Ganancias:'),0,0,'L',0);
         $this->pdf->Cell(0, 5, utf8_decode(convertir($totalLiteral)), 0,1, 'L', 0);
-        $this->pdf->Ln(10);
-        $this->pdf->Cell(50,7,utf8_decode('Fecha de Impresión:'),0,0,'L',0);
-        $this->pdf->SetFont('Arial','',11);
-        $this->pdf->Cell(160,7,utf8_decode(date("d/m/Y")),0,1,'L',0);
         }
         
 
@@ -219,9 +215,7 @@ class Dashboard extends CI_Controller {
         $this->pdf->Cell(25,5,utf8_decode('Total Deudas:'),0,0,'L',0);
         $this->pdf->Cell(0, 5, utf8_decode(convertir($totalLiteral)), 0,1, 'L', 0);
         $this->pdf->Ln(10);
-        $this->pdf->Cell(50,7,utf8_decode('Fecha de Impresión:'),0,0,'L',0);
-        $this->pdf->SetFont('Arial','',11);
-        $this->pdf->Cell(160,7,utf8_decode(date("d/m/Y")),0,1,'L',0);
+        
         }
         
 

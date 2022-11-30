@@ -8,6 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
+    <link href="<?php echo base_url(); ?>img/CruzdelSur.png" rel="icon" type="image/png"/>
     <meta name="author" content="Daniel Achá">
     <meta name="generator" content="Hugo 0.88.1">
     <!-- Custom fonts for this template-->

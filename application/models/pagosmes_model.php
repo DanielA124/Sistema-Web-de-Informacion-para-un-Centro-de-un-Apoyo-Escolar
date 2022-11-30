@@ -33,6 +33,13 @@ class PagosMes_model extends CI_Model {
     public function agregarPago($data)
     {
         $this->db->insert('pagoMensualidad',$data); //tabla
+        return $this->db->insert_id();
+
+    }
+
+    public function agregarSaldo($dato)
+    {
+        $this->db->insert('saldo',$dato); //tabla
 
     }
 
@@ -50,10 +57,10 @@ class PagosMes_model extends CI_Model {
         return $this->db->get(); //devolucion del resultado de la consulta
     }
 
-    public function modificarPagos($idPagoMen,$data)
+    public function modificarPagos($idPagoMen,$datos)
     {
         $this->db->where('idPagoMen',$idPagoMen);
-        $this->db->update('pagoMensualidad',$data);
+        $this->db->update('pagoMensualidad',$datos);
     }
 
     public function listaPagosDeudas()
@@ -84,4 +91,21 @@ class PagosMes_model extends CI_Model {
 
         return $this->db->get(); //devolucion del resultado de la consulta
     }
+
+    public function historial($idPagoMen)
+    {
+        $this->db->select('pagoMensualidad.fecha, pagoMensualidad.total, pagoMensualidad.deuda,  
+                            apoderado.nombres PNombre, apoderado.apellidoPaterno PPaterno,apoderado.apellidoMaterno PMaterno, 
+                            usuario.nombreUsuario, estudiante.nombres ENombre,estudiante.apellidoPaterno EPaterno ,estudiante.apellidoMaterno EMaterno,
+                            pagoMensualidad.pagado, saldo.saldo, saldo.fechaReg, saldo.idPagoMen'); //select *
+        $this->db->from('saldo'); //tabla
+        $this->db->join('pagoMensualidad', 'saldo.idPagoMen = pagomensualidad.idPagoMen');
+        $this->db->join('usuario', 'pagomensualidad.idUsuario = usuario.idUsuario');
+        $this->db->join('inscripcion', 'pagomensualidad.idInscripcion = inscripcion.idInscripcion');
+        $this->db->join('apoderado', 'inscripcion.idApoderado = apoderado.idApoderado');
+        $this->db->join('estudiante', 'inscripcion.idEstudiante = estudiante.idEstudiante');
+        $this->db->where('saldo.idPagoMen',$idPagoMen);
+        return $this->db->get(); //devolucion del resultado de la consulta
+    }
+
 }

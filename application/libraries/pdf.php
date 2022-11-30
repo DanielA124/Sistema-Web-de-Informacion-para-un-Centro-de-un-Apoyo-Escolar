@@ -15,6 +15,7 @@
 	   public function Footer(){
            $this->SetY(-15);
            $this->SetFont('Arial','I',7);
+           $this->Cell(0,10,'Fecha Impresion: '.date("d-m-Y"),0,0,'L');
            $this->Cell(0,10,'Pag. '.$this->PageNo().'/{nb}',0,0,'R');
       }
 }

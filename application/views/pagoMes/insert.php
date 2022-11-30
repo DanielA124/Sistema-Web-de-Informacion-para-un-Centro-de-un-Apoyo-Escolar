@@ -54,7 +54,7 @@
                     <label>Total:</label>
                 </div>
                 <div class="col-md-3">
-                    <input name="total" class="form-control" placeholder="" value="300" readonly></input><br>
+                    <input name="total" class="form-control" placeholder="" value="300"></input><br>
                 </div>
             </div>
             <div class="row">
@@ -62,7 +62,7 @@
                     <label>Pagado:</label>
                 </div>
                 <div class="col-md-3">
-                    <input type="number" step="0.1" name="pagado" class="form-control" placeholder="" value="" required min="0" max="300" autocomplete="off"></input><br>
+                    <input type="number" step="0.1" name="saldo" class="form-control" placeholder="" value="" required min="0" max="300" autocomplete="off"></input><br>
                 </div>
             </div>
             <div class="row">
@@ -83,6 +83,21 @@
                     <option>Octubre</option>
                     <option>Noviembre</option>
                     <option>Diciembre</option>
+                    </select><br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <label>Año:</label>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select form-control" aria-label="Default select example" required name="anio" >
+                    <option>2022</option>
+                    <option>2023</option>
+                    <option>2024</option>
+                    <option>2025</option>
+                    <option>2026</option>
+                    <option>2027</option>
                     </select><br>
                 </div>
             </div>

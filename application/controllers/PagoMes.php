@@ -92,7 +92,7 @@ class PagoMes extends CI_Controller {
 	{
         $data['idInscripcion']=$_POST['idInscripcion'];
         $data['total']=$_POST['total'];
-        $data['pagado']=$_POST['pagado'];
+        $data['pagado']=0;
         $data['deuda'] = $data['total'] - $data['pagado'];
         if ($data['total'] == $data['pagado']){
             $data['estado']=1;
@@ -103,11 +103,21 @@ class PagoMes extends CI_Controller {
         }
 
         $data['mes']=$_POST['mes'];
-        $data['anio']=date("Y");
+        $data['anio']=$_POST['anio'];
         $data['fecha']=date("Y-m-d");
         $data['idUsuario']=$this->session->userdata('idusuario');
 
-        $this->pagosmes_model->agregarPago($data);
+        $idPagoMen1= $this->pagosmes_model->agregarPago($data);
+
+        $dato['saldo']=$_POST['saldo'];
+        $dato['idPagoMen']=$idPagoMen1;
+        $this->pagosmes_model->agregarSaldo($dato);
+
+        $idPagoMen= $idPagoMen1;
+        $datos['pagado']=$dato['saldo'];
+        $datos['deuda'] = $data['total'] - $datos['pagado'];
+        $this->pagosmes_model->modificarPagos($idPagoMen, $datos);
+
         redirect('pagoMes/reportemodal','refresh');
 	}
 
@@ -138,24 +148,28 @@ class PagoMes extends CI_Controller {
 
     public function modificarbd()
     {
+        $dato['saldo']=$_POST['saldoPagado'];
+        $dato['idPagoMen']=$_POST['idPagoMen'];
+        $this->pagosmes_model->agregarSaldo($dato);
+
         $idPagoMen=$_POST['idPagoMen'];
         $deuda=$_POST['saldoPagado'];
         $total=$_POST['total'];
         $pagado=$_POST['pagado'];
         $aumpago=$pagado+$deuda;
         $resdeuda=$total-$aumpago;
-        $data['deuda']=$resdeuda;
-        $data['pagado']=$aumpago;
+        $datos['deuda']=$resdeuda;
+        $datos['pagado']=$aumpago;
         if ($total == $aumpago){
-            $data['estado']=1;
+            $datos['estado']=1;
         }
         else{
-            $data['estado']=0;
+            $datos['estado']=0;
         }
-        $data['fechaAct']=date("Y-m-d (H:i:s)");
+        $datos['fechaAct']=date("Y-m-d (H:i:s)");
 
-        $this->pagosmes_model->modificarPagos($idPagoMen,$data);
-        redirect('pagoMes/deshabilitados','refresh');
+        $this->pagosmes_model->modificarPagos($idPagoMen,$datos);
+        redirect('pagoMes/index','refresh');
     }
 
     public function deshabilitados()
@@ -289,11 +303,6 @@ class PagoMes extends CI_Controller {
             $this->pdf->Ln(5);
             $this->pdf->MultiCell(0, 5, utf8_decode('El presente es un comprobante de la compra realizada por el cliente.'), 0, 'J', 0);
 
-            $this->pdf->Ln(50);
-            $this->pdf->Cell(50,7,utf8_decode('Fecha de Impresion:'),0,0,'L',0);
-            $this->pdf->SetFont('Arial','',11);
-            $this->pdf->Cell(100,7,utf8_decode(date("d/m/Y")),0,1,'L',0);
-
             $this->pdf->Output("FacturaPago.pdf", "I");
     }
 
@@ -415,11 +424,142 @@ class PagoMes extends CI_Controller {
             $this->pdf->Ln(5);
             $this->pdf->MultiCell(0, 5, utf8_decode('El presente es un comprobante de la compra realizada por el cliente.'), 0, 'J', 0);
 
-            $this->pdf->Ln(50);
-            $this->pdf->Cell(50,7,utf8_decode('Fecha de Impresión:'),0,0,'L',0);
-            $this->pdf->SetFont('Arial','',11);
-            $this->pdf->Cell(160,7,utf8_decode(date("d/m/Y")),0,1,'L',0);
-
             $this->pdf->Output("FacturaPagoCopy.pdf", "I");
     }
+
+    public function historial()
+    {
+        $idPagoMen=$_POST['idPagoMen'];
+        $data['idPagoMen']=$idPagoMen;
+        $data['infoHistorial']=$this->pagosmes_model->historial($idPagoMen);
+        $this->load->view('inc/headersbadmin2');
+        $this->load->view('inc/sidebarsbadmin2');
+        $this->load->view('inc/topbarsbadmin2');
+        $this->load->view('pagoMes/historial',$data);
+        $this->load->view('inc/creditossbadmin2');
+        $this->load->view('inc/footersbadmin2');
+    }
+
+    public function historialPDF()
+    {
+            
+            $req = $this->pagosmes_model->reporteFactura($_POST['idPagoMen']);
+            $req = $req->result(); //convertir a array bidemencional
+            $his = $this->pagosmes_model->historial($_POST['idPagoMen']);
+            $his = $his->result(); //convertir a array bidemencional
+
+            $this->pdf = new Pdf();
+            $this->pdf->addPage('P', 'letter');
+            $this->pdf->AliasNbPages();
+            $this->pdf->SetTitle("Factura"); //título en el encabezado
+
+            $this->pdf->SetLeftMargin(20); //margen izquierdo
+            $this->pdf->SetRightMargin(20); //margen derecho
+            $this->pdf->SetFillColor(210, 210, 210); //color de fondo
+            $this->pdf->SetFont('Arial', 'B', 11); //tipo de letra
+            $this->pdf->Cell(0,5,'HISTORIAL DE PAGOS',0,1,'C',1);
+            $this->pdf->Ln();
+            $this->pdf->Image("img/CruzdelSur.png", 160, 30, 40, 40, 'PNG');
+            $this->pdf->SetFont('Arial', 'B', 10);
+            $this->pdf->Ln(0);
+            $this->pdf->Ln(0);
+
+            $actividad = $this->pagosmes_model->reporteFactura($_POST['idPagoMen']);
+            $actividad = $actividad->result();
+            foreach ($actividad as $rowa) {
+                $act = $rowa->PNombre.' '.$rowa->PPaterno.' '.$rowa->PMaterno;
+            }
+            $this->pdf->Cell(50, 7, utf8_decode('Cliente:'), 0, 0, 'L', 0);
+            $this->pdf->SetFont('Arial', '', 11);
+            $this->pdf->Cell(160, 7, utf8_decode($act), 0, 1, 'L', 0);
+
+            $this->pdf->Ln(0);
+            $actividad = $this->pagosmes_model->reporteFactura($_POST['idPagoMen']);
+            $actividad = $actividad->result();
+            foreach ($actividad as $rows) {
+                $num =($rows->numReferencia);
+            }
+            $this->pdf->SetFont('Arial', 'B', 11);
+            $this->pdf->Cell(50, 7, utf8_decode('Celular:'), 0, 0, 'L', 0);
+            $this->pdf->SetFont('Arial', '', 11);
+            $this->pdf->Cell(160, 7, utf8_decode($num), 0, 1, 'L', 0);
+
+
+            $this->pdf->Ln(0);
+             $actividad = $this->pagosmes_model->reporteFactura($_POST['idPagoMen']);
+            $actividad = $actividad->result();
+            foreach ($actividad as $rows) {
+                $usuario =$rows->nombreUsuario;
+            }
+            $this->pdf->SetFont('Arial', 'B', 11);
+            $this->pdf->Cell(50, 7, utf8_decode('Usuario asignado:'), 0, 0, 'L', 0);
+            $this->pdf->SetFont('Arial', '', 11);
+            $this->pdf->Cell(160, 7, utf8_decode($usuario), 0, 1, 'L', 0);
+            
+            $this->pdf->Ln(0);
+             $actividad = $this->pagosmes_model->reporteFactura($_POST['idPagoMen']);
+            $actividad = $actividad->result();
+            foreach ($actividad as $rows) {
+                $turno =$rows->horario;
+            }
+            $this->pdf->SetFont('Arial', 'B', 11);
+            $this->pdf->Cell(50, 7, utf8_decode('Turno Asignado:'), 0, 0, 'L', 0);
+            $this->pdf->SetFont('Arial', '', 11);
+            $this->pdf->Cell(160, 7, utf8_decode($turno), 0, 1, 'L', 0);
+            
+
+            $this->pdf->Ln(0);
+            $actividad = $this->pagosmes_model->reporteFactura($_POST['idPagoMen']);
+            $actividad = $actividad->result();
+            foreach ($actividad as $rows) {
+                $fechaRegistro =formatearFecha($rows->fecha);
+            }
+            $this->pdf->SetFont('Arial', 'B', 11);
+            $this->pdf->Cell(50, 7, utf8_decode('Fecha Inscrito:'), 0, 0, 'L', 0);
+            $this->pdf->SetFont('Arial', '', 11);
+            $this->pdf->Cell(160, 7, utf8_decode($fechaRegistro), 0, 1, 'L', 0);
+
+
+            $this->pdf->Ln(0);
+            $actividad = $this->pagosmes_model->reporteFactura($_POST['idPagoMen']);
+            $actividad = $actividad->result();
+            foreach ($actividad as $rows) {
+                $estudiante =$rows->ENombre.' '.$rows->EPaterno.' '.$rows->EMaterno;
+            }
+            $this->pdf->SetFont('Arial', 'B', 11);
+            $this->pdf->Cell(50, 7, utf8_decode('Estudiante:'), 0, 0, 'L', 0);
+            $this->pdf->SetFont('Arial', '', 11);
+            $this->pdf->Cell(160, 7, utf8_decode($estudiante), 0, 1, 'L', 0);
+   
+            $this->pdf->Ln(20);
+
+            $this->pdf->SetFont('Arial', 'B', 11);
+            $this->pdf->Cell(30, 8, ' ', 0, 0, 'C', 0);
+            $this->pdf->Cell(30, 8, 'Nro.', 'LTRB', 0, 'C', 0);
+            $this->pdf->Cell(40, 8, utf8_decode('Saldo'), 1, 0, 'C', 0);
+            $this->pdf->Cell(40, 8, utf8_decode('Fecha Pagado'), 1, 1, 'C', 0);
+
+
+            $num = 1;
+            foreach ($his as $row) {
+
+                $saldo = $row->saldo.' Bs.';
+                $fechaPago = formatearFecha($row->fechaReg);
+
+                $this->pdf->SetFont('Arial', '', 10);
+                $this->pdf->Cell(30, 8, ' ', 0, 0, 'C', 0);
+                $this->pdf->Cell(30, 5, $num, 1, 0, 'C', 0);
+                $this->pdf->Cell(40, 5, utf8_decode($saldo), 1, 0, 'C', false);
+                $this->pdf->Cell(40, 5, utf8_decode($fechaPago), 1, 0, 'C', false);
+
+                $this->pdf->Ln();
+
+                $num++;
+            }
+
+            
+
+            $this->pdf->Output("Historial.pdf", "I");
+    }
+
   }

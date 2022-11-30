@@ -25,8 +25,9 @@
           </div>
         </div>
       <?php echo form_close();?>
-      <table id="dataTable" class="table table-bordered table-responsive" width="100%" cellspacing="0">           
-        <thead class="bg-info text-dark">
+      <div class="table-responsive-md">
+      <table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">           
+        <thead class="bg-info text-dark" align="center">
           <tr>
             <th scope="col">N°</th>
             <th scope="col">Usuario</th>
@@ -35,7 +36,8 @@
             <th scope="col">Deuda</th>
             <th scope="col">Gestion Inscrito</th>
             <th scope="col">Estudiante</th>
-            <th scope="col">Imprimir</th>
+            <th scope="col">Factura</th>
+            <th scope="col">Historial</th>
           </tr>
         </thead>
         <tbody>
@@ -55,7 +57,7 @@
                   }
                   else{
                       echo "$row->deuda Bs.";
-                  };?><s/td>
+                  };?></td>
                 <td><?php echo $row->mes; ?>/<?php echo $row->anio; ?> </td>
                 <td><?php echo $row->nombres; ?> 
                     <?php echo $row->apellidoPaterno; ?> 
@@ -63,10 +65,17 @@
                 <td align="center">
                 <?php echo form_open_multipart('pagoMes/reportepdfCopia');?>
                   <input type="hidden" name="idPagoMen" value="<?php echo $row->idPagoMen;?>">
-                  <button class="btn btn-dark" data-toggle="tooltip"  data-placement="top" title="Editar" formtarget="_blank">
+                  <button class="btn btn-dark" data-toggle="tooltip"  data-placement="top" title="Factura" formtarget="_blank">
                   <i class="fa fa-file-pdf"></i>
                   </button>
                 <?php echo form_close();?></td>
+                <td align="center">
+                <?php echo form_open_multipart('pagoMes/historialPDF');?>
+                  <input type="hidden" name="idPagoMen" id="idPagoMen" value="<?php echo $row->idPagoMen;?>">
+                  <button class="btn btn-warning" data-toggle="tooltip"  data-placement="top" title="Historial" formtarget="_blank">
+                  <i class="fa fa-clipboard-list"></i>
+                  </button>
+                <?php echo form_close();?></td> 
             </tr>
           <?php
           $indice++;       
@@ -74,6 +83,7 @@
           ?>
         </tbody>
       </table>
+      </div>
     </div>
   </div>
 </div>

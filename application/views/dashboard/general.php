@@ -2,12 +2,14 @@
   <div class="card-body">
     <div class="col-md-12">
       <h1>Reporte General</h1>
-      <table id="dataTable" class="table table-bordered table-responsive" width="100%" cellspacing="0">           
-        <thead class="bg-info text-dark">
+      <div class=" table-responsive-md">
+      <table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">           
+        <thead class="bg-info text-dark" align="center">
           <tr>
             <th scope="col">Usuario</th>
             <th scope="col">Fecha Registro</th>
             <th scope="col">Total</th>
+            <th scope="col">Pagado</th>
             <th scope="col">Deuda</th>
             <th scope="col">Gestion Inscrito</th>
             <th scope="col">Estudiante</th>
@@ -22,6 +24,7 @@
             <tr>
                 <td><?php echo $row->nombreUsuario; ?></td>
                 <td><?php echo formatearFecha($row->fecha); ?></td>
+                <td><?php echo $row->total; ?> Bs.</td>
                 <td><?php echo $row->pagado; ?> Bs.</td>
                 <td><?php 
                   if ($row->deuda == 0){
@@ -41,6 +44,7 @@
           ?>
         </tbody>
       </table>
+    </div>
       <div class="row">
         <div class="col-md-6">
           <?php foreach ($total->result() as $row)

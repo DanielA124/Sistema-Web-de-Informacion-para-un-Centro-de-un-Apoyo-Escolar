@@ -61,7 +61,7 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <label>Colegio:</label>
+                <label>Unidad Educativa:</label>
             </div>
             <div class="col-md-9">
                 <input type="text" name="colegio" placeholder="" class="form-control" required autocomplete="off"><br>     

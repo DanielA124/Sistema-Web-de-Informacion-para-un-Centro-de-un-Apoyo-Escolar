@@ -12,8 +12,9 @@
                 ?>  
             </div>
         </div>
-      <table id="dataTable" class="table table-bordered table-responsive" width="100%" cellspacing="0">           
-        <thead class="bg-info text-dark">
+         <div class="table-responsive-md">
+      <table id="dataTable" class="table table-bordered">           
+        <thead class="bg-info text-dark" align="center">
           <tr>
             <th scope="col">Emitido por</th>
             <th scope="col">Fecha Emisión</th>
@@ -64,6 +65,7 @@
           ?>
         </tbody>
       </table>
+    </div>
     </div>
   </div>
 </div>

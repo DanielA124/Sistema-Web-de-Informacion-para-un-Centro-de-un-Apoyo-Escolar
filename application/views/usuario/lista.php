@@ -1,8 +1,9 @@
 <div class="card shadow">
   <div class="card-body">
     <div class="col-md-12">
-      <table id="dataTable" class="table table-bordered table-responsive" width="100%" cellspacing="0">           
-        <thead class="bg-info text-dark">
+       <div class="table-responsive-md">
+      <table id="dataTable" class="table table-bordered">           
+        <thead class="bg-info text-dark" align="center">
           <tr>
             <th scope="col">N°</th>
             <th scope="col">Nombre Completo</th>
@@ -51,9 +52,7 @@
           ?>
         </tbody>
       </table>
-        
-        
-
+      </div>  
         <div class="row">
             <div class="col-md-6">
                 <?php 

@@ -5,7 +5,7 @@
         <div class="col-md-6 col-sm-6  ">
           <div class="x_panel">
             <div class="x_title">
-                <h2>Bar Charts <small>Sessions</small></h2>
+                <h2>Pagado<small>Datos</small></h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -19,11 +19,12 @@
   </div>
 </div>
 <script>
-  var grafico= ['pie', 'bar', 'polarArea', 'line', 'doughnut'];
+  var grafico= ['pie', 'polarArea', 'line', 'doughnut'];
   var random = Math.floor(Math.random() * grafico.length);
 
   var paraMes=[];
   var paraNumero=[];
+  var paraNombre=[];
 
 $("#btnBuscar").click(function(){
   $.post("<?php echo base_url();?>index.php/Dashboard/getMeses",
@@ -33,6 +34,7 @@ $("#btnBuscar").click(function(){
       $.each(obj, function(i,item){
         paraMes.push(item.Monto);
         paraNumero.push(item.Sum);
+        paraNombre.push(item.Nombre);
       });
 
       //var paraColor = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
@@ -42,10 +44,10 @@ $("#btnBuscar").click(function(){
           var myChart = new Chart(ctx, {
               type: grafico[random],
               data: {
-                  labels: paraMes, //paraColor,
+                  labels: paraNombre, //paraColor,
                   datasets: [{
-                      label: 'Hola',
-                      data: paraNumero, //paraNum ,
+                      label: paraNumero,
+                      data: paraMes, //paraNum ,
                       backgroundColor: [
                           'rgba(255, 99, 132, 0.2)',
                           'rgba(54, 162, 235, 0.2)',

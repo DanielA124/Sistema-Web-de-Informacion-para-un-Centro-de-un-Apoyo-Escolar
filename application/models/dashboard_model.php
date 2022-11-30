@@ -5,11 +5,12 @@ class Dashboard_model extends CI_Model {
 
        public function getMes() //select
       {
-         $this->db->select('pago.idPago, total Sum, monto Monto'); //select*
-         $this->db->from('mensualidad'); //tabla
-         $this->db->join('detallepago', 'mensualidad.idMensualidad=detallepago.idMensualidad');
-         $this->db->join('pago', 'detallepago.idPago=detallepago.idPago');
-         $this->db->group_by('idPago');
+         $this->db->select('pagoMensualidad.idPagoMen, pagoMensualidad.total Sum, pagoMensualidad.pagado Monto,
+                           estudiante.nombres Nombre'); //select*
+         $this->db->join('inscripcion', 'pagoMensualidad.idInscripcion = inscripcion.idInscripcion');
+         $this->db->join('estudiante', 'inscripcion.idEstudiante = estudiante.idEstudiante');
+         $this->db->from('pagoMensualidad'); //tabla
+         $this->db->group_by('idPagoMen');
 
          $query = $this->db->get(); //devolucion del resultado de la consulta
          return $query->result();
@@ -17,11 +18,11 @@ class Dashboard_model extends CI_Model {
 
       public function detalleGeneral() //select
    {
-        $this->db->select('idPagoMen, fecha, total, pagado, deuda, mes, anio, pagomensualidad.estado, 
+        $this->db->select('idPagoMen, fecha, total, pagado, deuda,  mes, anio, pagomensualidad.estado, 
                             estudiante.nombres,estudiante.apellidoPaterno,estudiante.apellidoMaterno, 
                             usuario.nombreUsuario'); //select *
-        $this->db->join('usuario', 'pagomensualidad.idUsuario = usuario.idUsuario');
-        $this->db->join('inscripcion', 'pagomensualidad.idInscripcion = inscripcion.idInscripcion');
+        $this->db->join('usuario', 'pagoMensualidad.idUsuario = usuario.idUsuario');
+        $this->db->join('inscripcion', 'pagoMensualidad.idInscripcion = inscripcion.idInscripcion');
         $this->db->join('estudiante', 'inscripcion.idEstudiante = estudiante.idEstudiante');
         $this->db->from('pagoMensualidad'); //tabla
 
@@ -31,9 +32,7 @@ class Dashboard_model extends CI_Model {
    public function totalGeneral() //select
    {
       $this->db->select('SUM(pagado) Suma'); //select*
-      $this->db->from('pagoMensualidad'); //tabla]
-
-
+      $this->db->from('pagoMensualidad'); //tabla
 
       return $this->db->get(); //devolucion del resultado de la consulta
    }
@@ -73,9 +72,10 @@ class Dashboard_model extends CI_Model {
 
    public function totalDeudas() //select
    {
-      $this->db->select('SUM(deuda) Suma'); //select*
-      $this->db->from('pagoMensualidad'); //tabla]
-      $this->db->where('pagoMensualidad.estado', '0');
+      $this->db->select('SUM(saldo) Suma, pagoMensualidad.estado'); //select*
+      $this->db->join('pagoMensualidad', 'saldo.idPagoMen = pagomensualidad.idPagoMen');
+      $this->db->from('saldo'); //tabla
+      $this->db->where('pagoMensualidad.estado', 0);
 
 
       return $this->db->get(); //devolucion del resultado de la consulta

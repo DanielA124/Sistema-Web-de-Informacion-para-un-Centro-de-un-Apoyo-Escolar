@@ -1,14 +1,16 @@
 <div class="card shadow">
   <div class="card-body">
     <div class="col-md-12">
-      <table id="dataTable" class="table table-bordered table-responsive" width="100%" cellspacing="0">           
-        <thead class="bg-info text-dark">
+       <div class="table-responsive-md">
+      <table id="dataTable" class="table table-bordered">           
+        <thead class="bg-info text-dark" align="center">
           <tr>
             <th scope="col">N°</th>
             <th scope="col">Nombre Completo Padre</th>
             <th scope="col">Nombre Completo Estudiante</th>
             <th scope="col">Observacion</th>
             <th scope="col">Horario</th>
+            <th scope="col">Imprimir</th>
             <th scope="col">Modificar</th>
             <th scope="col">Deshabilitar</th>
           </tr>
@@ -29,7 +31,13 @@
                     <?php echo $row->EApM; ?></td>
                 <td><?php echo $row->observaciones; ?></td>
                 <td><?php echo $row->horario; ?></td>
-
+                <td align="center">
+                <?php echo form_open_multipart('inscripcion/inscripcionPDF');?>
+                  <input type="hidden" name="idInscripcion" value="<?php echo $row->idInscripcion;?>">
+                  <button class="btn btn-dark" data-toggle="tooltip"  data-placement="top" title="Plantilla" formtarget="_blank">
+                  <i class="fa fa-file-pdf"></i>
+                  </button>
+                <?php echo form_close();?></td>
                 <td align="center">                  
                   <?php echo form_open_multipart('inscripcion/modificar'); ?>
                   <input type="hidden" name="idInscripcion" value="<?php echo $row->idInscripcion; ?>">
@@ -50,6 +58,7 @@
           ?>
         </tbody>
       </table>
+    </div>
       <div class="row">
             <div class="col-md-6">
                 <?php 
