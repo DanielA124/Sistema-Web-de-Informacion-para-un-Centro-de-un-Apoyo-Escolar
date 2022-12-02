@@ -43,7 +43,7 @@
                 <button type="submit" class="btn btn-dark btn-block"><i class="fas fa-file-word">   Agregar Word</i></button>
                 <?php 
                 echo form_close(); 
-                ?>   
+                ?>
             </div>
             <div class="col-md-3">
                 <?php echo form_open_multipart('archivo/agregarExcel'); ?>
